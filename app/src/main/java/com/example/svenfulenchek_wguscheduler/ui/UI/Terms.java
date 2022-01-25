@@ -52,6 +52,7 @@ public class Terms extends AppCompatActivity {
         startActivityForResult(termEditor, MainActivity.ADD_TERM_REQUEST_CODE);
     }
 
+    // TODO: is there a better way to do this?
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

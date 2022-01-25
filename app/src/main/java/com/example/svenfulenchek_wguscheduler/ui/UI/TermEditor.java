@@ -27,6 +27,10 @@ public class TermEditor extends AppCompatActivity {
         //TODO: Populate form based on existingTermData
     }
 
+    // This function actually updates the database, then sends the data to the View that was
+    // sent to the database.  The view does not query the database on every term add, it only
+    // gets all terms from the database when onCreate is called.
+    // TODO: is there a better way to do this?
     public void onUserFinished(View view){
         //TODO: Input validation
 
