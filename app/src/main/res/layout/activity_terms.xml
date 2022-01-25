@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.Terms">
+    tools:context=".ui.UI.Terms">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_terms"
@@ -22,6 +22,7 @@
         android:layout_height="55dp"
         android:layout_marginBottom="1dp"
         android:background="#00FFFFFF"
+        android:onClick="addTerm"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar_terms"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"

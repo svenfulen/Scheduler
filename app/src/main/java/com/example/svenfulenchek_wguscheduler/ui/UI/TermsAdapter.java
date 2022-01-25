@@ -1,6 +1,6 @@
 // TODO: Code analysis, refactoring, commenting
 
-package com.example.svenfulenchek_wguscheduler.ui;
+package com.example.svenfulenchek_wguscheduler.ui.UI;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,7 +11,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.svenfulenchek_wguscheduler.R;
-import com.example.svenfulenchek_wguscheduler.ui.Models.Term;
+import com.example.svenfulenchek_wguscheduler.ui.Entity.Term;
 
 import java.util.List;
 

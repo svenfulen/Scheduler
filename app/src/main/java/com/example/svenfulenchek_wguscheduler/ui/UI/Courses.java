@@ -1,4 +1,4 @@
-package com.example.svenfulenchek_wguscheduler.ui;
+package com.example.svenfulenchek_wguscheduler.ui.UI;
 
 import androidx.appcompat.app.AppCompatActivity;
 

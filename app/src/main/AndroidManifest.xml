@@ -10,22 +10,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SvenFulenchek_WGUScheduler">
         <activity
-            android:name=".ui.TermEditor"
+            android:name=".ui.UI.TermEditor"
             android:exported="false" />
         <activity
-            android:name=".ui.Assessments"
+            android:name=".ui.UI.Assessments"
             android:exported="false"
-            android:parentActivityName=".ui.MainActivity" />
+            android:parentActivityName=".ui.UI.MainActivity" />
         <activity
-            android:name=".ui.Courses"
+            android:name=".ui.UI.Courses"
             android:exported="false"
-            android:parentActivityName=".ui.MainActivity" />
+            android:parentActivityName=".ui.UI.MainActivity" />
         <activity
-            android:name=".ui.Terms"
+            android:name=".ui.UI.Terms"
             android:exported="false"
-            android:parentActivityName=".ui.MainActivity" />
+            android:parentActivityName=".ui.UI.MainActivity" />
         <activity
-            android:name=".ui.MainActivity"
+            android:name=".ui.UI.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

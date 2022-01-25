@@ -1,4 +1,4 @@
-package com.example.svenfulenchek_wguscheduler.ui;
+package com.example.svenfulenchek_wguscheduler.ui.UI;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,9 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.svenfulenchek_wguscheduler.R;
-import com.example.svenfulenchek_wguscheduler.ui.Models.Term;
-
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
