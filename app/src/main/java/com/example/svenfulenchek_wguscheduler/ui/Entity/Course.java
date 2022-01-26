@@ -3,8 +3,6 @@ package com.example.svenfulenchek_wguscheduler.ui.Entity;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import java.util.ArrayList;
-
 @Entity(tableName = "COURSES")
 public class Course {
 
