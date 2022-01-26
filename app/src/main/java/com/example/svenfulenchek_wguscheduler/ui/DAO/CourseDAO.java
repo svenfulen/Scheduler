@@ -24,5 +24,8 @@ public interface CourseDAO {
     void delete(Course course);
 
     @Query("SELECT * FROM COURSES")
-    public List<Term> getAllCourses();
+    public List<Course> getAllCourses();
+
+    @Query("SELECT * FROM COURSES WHERE termId=:termId")
+    public List<Course> getCoursesInTerm(int termId);
 }

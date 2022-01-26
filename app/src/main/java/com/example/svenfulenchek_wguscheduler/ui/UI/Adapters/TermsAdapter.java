@@ -1,4 +1,4 @@
-package com.example.svenfulenchek_wguscheduler.ui.UI;
+package com.example.svenfulenchek_wguscheduler.ui.UI.Adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;

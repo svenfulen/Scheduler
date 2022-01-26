@@ -37,13 +37,16 @@ public class TermEditor extends AppCompatActivity implements DatePickerDialog.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_term_editor);
 
+        // UI elements
         EditText termTitleField = (EditText)findViewById(R.id.termTitleField);
         Button startDateField = (Button)findViewById(R.id.startDateField);
         Button endDateField = (Button)findViewById(R.id.endDateField);
 
+        // Determine if the term is being edited or a new term is being created
         Intent existingTermData = getIntent();
         editMode = existingTermData.getBooleanExtra("EDIT", false);
 
+        // Populate form with existing data
         if (editMode) {
             termID = existingTermData.getIntExtra("TERM_ID", 0);
             String termTitle = existingTermData.getStringExtra("TERM_TITLE");
