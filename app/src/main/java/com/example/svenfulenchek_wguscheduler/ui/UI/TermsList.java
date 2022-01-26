@@ -18,7 +18,7 @@ import com.example.svenfulenchek_wguscheduler.ui.Entity.Term;
 
 import java.util.ArrayList;
 
-public class TermsList extends AppCompatActivity {
+public class TermsList extends AppCompatActivity implements TermsAdapter.termClickListener {
 
     public static ArrayList<Term> TERMS_IN_UI = new ArrayList<Term>();
 
@@ -34,7 +34,7 @@ public class TermsList extends AppCompatActivity {
         }
         RecyclerView rvTerms = (RecyclerView) findViewById(R.id.rvTerms);
         // Create a TermsAdapter using data retrieved from the Repository
-        TermsAdapter adapter = new TermsAdapter(TERMS_IN_UI);
+        TermsAdapter adapter = new TermsAdapter(TERMS_IN_UI, this);
         // Attach the adapter to the recyclerview to populate items
         rvTerms.setAdapter(adapter);
         // Set layout manager to position the items
@@ -75,4 +75,18 @@ public class TermsList extends AppCompatActivity {
 
         }
     }
+
+    // Open the term's detailed view
+    @Override
+    public void onTermClick(int termId, String termTitle, String termStart, String termEnd){
+        Intent termView = new Intent(TermsList.this, TermView.class);
+        String dateRange = termStart + " - " + termEnd;
+
+        // Pass values to the new activity
+        termView.putExtra("TERM_ID", termId);
+        termView.putExtra("TERM_TITLE", termTitle);
+        termView.putExtra("DATE_RANGE", dateRange);
+        startActivity(termView);
+    }
+
 }
