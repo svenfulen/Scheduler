@@ -14,24 +14,49 @@ import android.widget.Toast;
 
 import com.example.svenfulenchek_wguscheduler.R;
 
+/*
+This class can be used to add or edit terms.
+To edit an existing term, use Intent.putExtra("EDIT", true); and pass existing term data:
+TERM_ID
+TERM_TITLE
+TERM_START
+TERM_END
+When the activity is finished and editMode is set to true, it will return extras including Term ID
+ */
 public class TermEditor extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
     // True if setting start date, false if setting end date.
     boolean startDate;
+
+    // True if editing an existing term
+    boolean editMode = false;
+    int termID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_term_editor);
 
-        // Get data if editing an existing term
-        Intent existingTermData = getIntent();
-        String termTitle = existingTermData.getStringExtra("TERM_TITLE");
-        String termStart = existingTermData.getStringExtra("TERM_START");
-        String termEnd = existingTermData.getStringExtra("TERM_END");
-
-        // Open a date picker for either the start or end date button
+        EditText termTitleField = (EditText)findViewById(R.id.termTitleField);
         Button startDateField = (Button)findViewById(R.id.startDateField);
+        Button endDateField = (Button)findViewById(R.id.endDateField);
+
+        Intent existingTermData = getIntent();
+        editMode = existingTermData.getBooleanExtra("EDIT", false);
+
+        if (editMode) {
+            termID = existingTermData.getIntExtra("TERM_ID", 0);
+            String termTitle = existingTermData.getStringExtra("TERM_TITLE");
+            String termStart = existingTermData.getStringExtra("TERM_START");
+            String termEnd = existingTermData.getStringExtra("TERM_END");
+
+            if (!termTitle.isEmpty()) { termTitleField.setText(termTitle); }
+            if (!termStart.isEmpty()) { startDateField.setText(termStart); }
+            if (!termEnd.isEmpty()) { endDateField.setText(termEnd); }
+
+        }
+
+        // Open a date picker when the start/end date fields are clicked
         startDateField.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view){
@@ -40,7 +65,6 @@ public class TermEditor extends AppCompatActivity implements DatePickerDialog.On
                 startDate = true;
             }
         });
-        Button endDateField = (Button)findViewById(R.id.endDateField);
         endDateField.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view){
@@ -83,12 +107,13 @@ public class TermEditor extends AppCompatActivity implements DatePickerDialog.On
 
         // Make sure the user has entered in a term title, start date, and end date
         if (!term_end.equals("End Date") && !term_start.equals("Start Date") && !term_title.isEmpty()) {
-            // Add new term to database
+            // Return new term data
             try {
                 Intent extras = new Intent();
                 extras.putExtra("TERM_TITLE", term_title);
                 extras.putExtra("TERM_START", term_start);
                 extras.putExtra("TERM_END", term_end);
+                if(editMode) { extras.putExtra("TERM_ID", termID); }
                 setResult(RESULT_OK, extras);
                 finish();
             } catch (Exception e) {

@@ -43,6 +43,8 @@ public class TermsList extends AppCompatActivity {
     // Open the Term Editor activity
     public void addTerm(View view){
         Intent termEditor = new Intent(TermsList.this, TermEditor.class);
+        // Tells the term editor that we are adding a new term and not editing an existing one
+        termEditor.putExtra("EDIT", false);
         startActivityForResult(termEditor, utils.ADD_TERM_REQUEST_CODE);
     }
 

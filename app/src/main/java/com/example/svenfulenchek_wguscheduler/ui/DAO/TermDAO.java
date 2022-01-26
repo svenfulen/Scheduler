@@ -19,6 +19,9 @@ public interface TermDAO {
     @Update
     void update(Term term);
 
+    @Query("")
+    void updateTermDetailsById(int termID);
+
     @Delete
     void delete(Term term);
 
