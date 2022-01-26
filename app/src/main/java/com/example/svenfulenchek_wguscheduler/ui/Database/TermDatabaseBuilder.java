@@ -14,8 +14,9 @@ import com.example.svenfulenchek_wguscheduler.ui.Entity.Term;
 import com.example.svenfulenchek_wguscheduler.ui.Entity.Course;
 import com.example.svenfulenchek_wguscheduler.ui.Entity.Assessment;
 import com.example.svenfulenchek_wguscheduler.ui.Entity.Note;
+import com.example.svenfulenchek_wguscheduler.ui.utils;
 
-@Database(entities={Term.class, Course.class, Assessment.class, Note.class}, version=2, exportSchema = false)
+@Database(entities={Term.class, Course.class, Assessment.class, Note.class}, version= utils.DATABASE_VERSION, exportSchema = false)
 public abstract class TermDatabaseBuilder extends RoomDatabase {
     // Data access objects
     public abstract TermDAO termDAO();

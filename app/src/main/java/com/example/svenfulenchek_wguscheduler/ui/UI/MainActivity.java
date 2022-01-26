@@ -5,13 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.svenfulenchek_wguscheduler.R;
 
 public class MainActivity extends AppCompatActivity {
-
-    // Request codes for all activities are handled HERE
-    public static final int ADD_TERM_REQUEST_CODE = 10;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,20 +18,14 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    // Methods to open different views of the app (Terms, courses, assessments)
+    // Methods to open different views of the app (TermsList, courses, assessments)
     public void openTermsActivity(View view) {
-        Intent termsIntent = new Intent(MainActivity.this, Terms.class);
+        if(TermsList.TERMS_IN_UI.size() < 1) {
+            Toast.makeText(getApplicationContext(), "Loading Terms", Toast.LENGTH_SHORT).show();
+        }
+        Intent termsIntent = new Intent(MainActivity.this, TermsList.class);
         startActivity(termsIntent);
     }
 
-    public void openCoursesActivity(View view) {
-        Intent coursesIntent = new Intent(MainActivity.this, Courses.class);
-        startActivity(coursesIntent);
-    }
-
-    public void openAssessmentsActivity(View view) {
-        Intent assessmentsIntent = new Intent(MainActivity.this, Assessments.class);
-        startActivity(assessmentsIntent);
-    }
 
 }

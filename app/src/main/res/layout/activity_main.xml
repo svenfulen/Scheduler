@@ -29,26 +29,9 @@
         <Button
             android:id="@+id/termsButton"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_height="100dp"
             android:onClick="openTermsActivity"
-            android:text="Terms" />
-
-        <Button
-            android:id="@+id/coursesButton"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:onClick="openCoursesActivity"
-            android:text="Courses" />
-
-        <Button
-            android:id="@+id/assessmentsButton"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:onClick="openAssessmentsActivity"
-            android:text="Assessments" />
+            android:text="View All Terms" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

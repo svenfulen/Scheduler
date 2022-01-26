@@ -90,5 +90,8 @@ public class TermsAdapter extends
         return mTerms.size();
     }
 
+    public Term getItem(int position){
+        return mTerms.get(position);
+    }
 
 }

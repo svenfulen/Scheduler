@@ -8,56 +8,49 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 import com.example.svenfulenchek_wguscheduler.R;
-import com.example.svenfulenchek_wguscheduler.ui.DAO.TermDAO;
+import com.example.svenfulenchek_wguscheduler.ui.utils;
 import com.example.svenfulenchek_wguscheduler.ui.Database.Repository;
 import com.example.svenfulenchek_wguscheduler.ui.Entity.Term;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class Terms extends AppCompatActivity {
+public class TermsList extends AppCompatActivity {
 
-    ArrayList<Term> TERMS_IN_UI = new ArrayList<Term>();
+    public static ArrayList<Term> TERMS_IN_UI = new ArrayList<Term>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_terms);
+        setContentView(R.layout.activity_terms_list);
 
-        Repository db = new Repository(getApplication());
-        TERMS_IN_UI.addAll(db.getAllTerms());
-
-        // Lookup the recyclerview in activity layout
+        // Get data from the repository if not already done
+        if(TERMS_IN_UI.size() < 1) {
+            Repository db = new Repository(getApplication());
+            TERMS_IN_UI.addAll(db.getAllTerms());
+        }
         RecyclerView rvTerms = (RecyclerView) findViewById(R.id.rvTerms);
-
-        // Create adapter passing in the sample user data
+        // Create a TermsAdapter using data retrieved from the Repository
         TermsAdapter adapter = new TermsAdapter(TERMS_IN_UI);
-
         // Attach the adapter to the recyclerview to populate items
         rvTerms.setAdapter(adapter);
-
         // Set layout manager to position the items
         rvTerms.setLayoutManager(new LinearLayoutManager(this));
-        // That's all!
-
     }
 
     // Open the Term Editor activity
     public void addTerm(View view){
-        Intent termEditor = new Intent(Terms.this, TermEditor.class);
-        startActivityForResult(termEditor, MainActivity.ADD_TERM_REQUEST_CODE);
+        Intent termEditor = new Intent(TermsList.this, TermEditor.class);
+        startActivityForResult(termEditor, utils.ADD_TERM_REQUEST_CODE);
     }
 
-    // TODO: is there a better way to do this?
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == MainActivity.ADD_TERM_REQUEST_CODE) {
+        if (requestCode == utils.ADD_TERM_REQUEST_CODE) {
             if (resultCode == Activity.RESULT_OK) {
                 // Add term to view
                 String termTitle = data.getStringExtra("TERM_TITLE");
@@ -69,6 +62,12 @@ public class Terms extends AppCompatActivity {
                 RecyclerView rvTerms = (RecyclerView) findViewById(R.id.rvTerms);
                 RecyclerView.Adapter<TermsAdapter.ViewHolder> rvAdapter = rvTerms.getAdapter();
                 rvAdapter.notifyItemInserted(TERMS_IN_UI.size() -1);
+
+                // Add term to database
+                Repository db = new Repository(getApplication());
+                Term newTerm = new Term(termTitle, termStart, termEnd);
+                db.insertTerm(newTerm);
+
             }
 
         }
