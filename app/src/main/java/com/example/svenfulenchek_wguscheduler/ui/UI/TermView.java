@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import androidx.appcompat.widget.Toolbar;
 
@@ -13,6 +14,7 @@ import com.example.svenfulenchek_wguscheduler.R;
 import com.example.svenfulenchek_wguscheduler.ui.Database.Repository;
 import com.example.svenfulenchek_wguscheduler.ui.Entity.Course;
 import com.example.svenfulenchek_wguscheduler.ui.UI.Adapters.CourseAdapter;
+import com.example.svenfulenchek_wguscheduler.ui.utils;
 
 import java.util.ArrayList;
 
@@ -58,6 +60,11 @@ public class TermView extends AppCompatActivity {
         CourseAdapter adapter = new CourseAdapter(COURSES_IN_UI);
         rvCoursesInTerm.setAdapter(adapter);
         rvCoursesInTerm.setLayoutManager(new LinearLayoutManager(this));
+    }
+
+    // Open the Term Editor activity
+    public void addCourseToTerm(View view){
+
     }
 
 }

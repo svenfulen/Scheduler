@@ -45,21 +45,4 @@ public class Term {
     public int getTermId() { return termId; }
     public void setTermId(int termId) { this.termId = termId; }
 
-    /*
-    TODO: Handle this differently
-    public ArrayList<Course> getCoursesInTerm() {
-        return coursesInTerm;
-    }
-    public void setCoursesInTerm(ArrayList<Course> coursesInTerm) { this.coursesInTerm = coursesInTerm; }
-
-
-    // Add and remove courses
-    public void addCourseToTerm(Course course){
-        this.coursesInTerm.add(course);
-    }
-
-    public void removeCourseFromTerm(Course course){
-        this.coursesInTerm.remove(course);
-    }
-    */
 }
