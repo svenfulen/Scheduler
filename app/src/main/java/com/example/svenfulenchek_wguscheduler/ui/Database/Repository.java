@@ -65,6 +65,18 @@ public class Repository {
         return mAllTerms;
     }
 
+    public void updateTermDetailsById(int termID, String termTitle, String termStart, String termEnd){
+        databaseExecutor.execute(()->{
+            mTermDAO.updateTermDetailsById(termID,termTitle,termStart,termEnd);
+        });
+        try {
+            Thread.sleep(1000);
+        }
+        catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void insertCourse(Course course){
         databaseExecutor.execute(()->{
             mCourseDAO.insert(course);

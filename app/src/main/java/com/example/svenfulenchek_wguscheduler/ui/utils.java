@@ -6,6 +6,7 @@ public class utils {
 
     // Request codes for all activities are handled HERE
     public static final int ADD_TERM_REQUEST_CODE = 10;
+    public static final int EDIT_TERM_REQUEST_CODE = 11;
 
 
 }

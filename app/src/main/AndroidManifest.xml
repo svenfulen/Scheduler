@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SvenFulenchek_WGUScheduler">
         <activity
+            android:name=".ui.UI.CourseEditor"
+            android:exported="false" />
+        <activity
             android:name=".ui.UI.TermView"
             android:exported="false" />
         <activity

@@ -23,9 +23,13 @@ public interface TermDAO {
     void delete(Term term);
 
     @Query("SELECT * FROM TERMS")
-    public List<Term> getAllTerms();
+    List<Term> getAllTerms();
 
     // TODO: Test this function.  I don't know if it works but this is basically what it should do.
     @Query("UPDATE TERMS " + "SET termTitle = :termTitle, startDate = :termStart, endDate = :termEnd " + "WHERE termId = :termID" )
     void updateTermDetailsById(int termID, String termTitle, String termStart, String termEnd);
+
+    // TODO: remove this if never used
+    @Query("SELECT * FROM TERMS WHERE termId = :termID")
+    Term getTermById(int termID);
 }

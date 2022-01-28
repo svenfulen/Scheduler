@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.UI.CourseEditor">
+
+    <Button
+        android:id="@+id/courseEndField"
+        android:layout_width="180dp"
+        android:layout_height="52dp"
+        android:backgroundTint="#FFFFFF"
+        android:fontFamily="sans-serif"
+        android:text="End Date"
+        android:textAlignment="textStart"
+        android:textAllCaps="false"
+        android:textColor="#8A8A8A"
+        app:cornerRadius="0dp"
+        tools:layout_editor_absoluteX="215dp"
+        tools:layout_editor_absoluteY="137dp" />
+
+    <Button
+        android:id="@+id/courseStartField"
+        android:layout_width="180dp"
+        android:layout_height="52dp"
+        android:backgroundTint="#FFFFFF"
+        android:fontFamily="sans-serif"
+        android:text="Start Date"
+        android:textAlignment="textStart"
+        android:textAllCaps="false"
+        android:textColor="#8A8A8A"
+        app:cornerRadius="0dp"
+        tools:layout_editor_absoluteX="15dp"
+        tools:layout_editor_absoluteY="137dp" />
+
+    <Button
+        android:id="@+id/courseSubmitButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="DONE"
+        tools:layout_editor_absoluteX="307dp"
+        tools:layout_editor_absoluteY="208dp" />
+
+    <EditText
+        android:id="@+id/courseTitleField"
+        android:layout_width="380dp"
+        android:layout_height="52dp"
+        android:ems="10"
+        android:hint="Course Title"
+        android:inputType="textPersonName"
+        android:maxLength="24"
+        android:maxLines="1"
+        tools:layout_editor_absoluteX="15dp"
+        tools:layout_editor_absoluteY="70dp" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_term_editor2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp" />
+
+    <Spinner
+        android:id="@+id/courseStatusSpinner"
+        android:layout_width="180dp"
+        android:layout_height="52dp"
+        tools:layout_editor_absoluteX="15dp"
+        tools:layout_editor_absoluteY="204dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

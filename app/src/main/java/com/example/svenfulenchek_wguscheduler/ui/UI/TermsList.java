@@ -80,12 +80,13 @@ public class TermsList extends AppCompatActivity implements TermsAdapter.termCli
     @Override
     public void onTermClick(int termId, String termTitle, String termStart, String termEnd){
         Intent termView = new Intent(TermsList.this, TermView.class);
-        String dateRange = termStart + " - " + termEnd;
 
         // Pass values to the new activity
         termView.putExtra("TERM_ID", termId);
         termView.putExtra("TERM_TITLE", termTitle);
-        termView.putExtra("DATE_RANGE", dateRange);
+        termView.putExtra("TERM_START", termStart);
+        termView.putExtra("TERM_END", termEnd);
+
         startActivity(termView);
     }
 
