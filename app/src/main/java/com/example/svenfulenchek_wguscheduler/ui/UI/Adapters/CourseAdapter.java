@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.svenfulenchek_wguscheduler.R;
 import com.example.svenfulenchek_wguscheduler.ui.Entity.Course;
 import com.example.svenfulenchek_wguscheduler.ui.UI.CourseView;
-import com.example.svenfulenchek_wguscheduler.ui.UI.TermView;
 
 import java.util.List;
 

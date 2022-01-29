@@ -2,6 +2,7 @@ package com.example.svenfulenchek_wguscheduler.ui.UI;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
@@ -15,6 +16,7 @@ import com.example.svenfulenchek_wguscheduler.ui.Database.Repository;
 import com.example.svenfulenchek_wguscheduler.ui.Entity.Assessment;
 import com.example.svenfulenchek_wguscheduler.ui.Entity.Course;
 import com.example.svenfulenchek_wguscheduler.ui.Entity.Term;
+import com.example.svenfulenchek_wguscheduler.ui.UI.Adapters.AssessmentAdapter;
 import com.example.svenfulenchek_wguscheduler.ui.utils;
 
 import java.util.ArrayList;
@@ -62,15 +64,18 @@ public class CourseView extends AppCompatActivity {
         TERM_ID = existingCourseData.getIntExtra("TERM_ID", -1);
         COURSE_ID = existingCourseData.getIntExtra("COURSE_ID", -1);
 
-        // UI Elements
-
-        // TODO: Get assessments in course
-        // TODO: Database functions
-
+        // Get Assessments from database if needed
+        if(ASSESSMENTS_IN_UI.size() < 1){
+            Repository db = new Repository(getApplication());
+            ASSESSMENTS_IN_UI.addAll(db.getAssessmentsInCourse(COURSE_ID));
+        }
         updateCourseView();
 
-        // TODO: Populate RecyclerView
-        // TODO: AssessmentsAdapter
+        // Populate RecyclerView
+        RecyclerView rvAssessments = (RecyclerView) findViewById(R.id.rvAssessments);
+        AssessmentAdapter adapter = new AssessmentAdapter(ASSESSMENTS_IN_UI);
+        rvAssessments.setAdapter(adapter);
+        rvAssessments.setLayoutManager(new LinearLayoutManager(this));
 
         // Allows the toolbar menu to work.
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar_course_view);
@@ -89,7 +94,22 @@ public class CourseView extends AppCompatActivity {
 
         if (requestCode == utils.ADD_ASSESSMENT_REQUEST_CODE) {
             if (resultCode == Activity.RESULT_OK) {
+                // Add assessment to view
+                String assessmentTitle = data.getStringExtra("ASSESSMENT_TITLE");
+                String assessmentStart = data.getStringExtra("ASSESSMENT_START");
+                String assessmentEnd = data.getStringExtra("ASSESSMENT_END");
+                String assessmentType = data.getStringExtra("ASSESSMENT_TYPE");
+                Assessment newAssessment = new Assessment(COURSE_ID, assessmentType,assessmentStart,assessmentEnd, assessmentTitle);
+                ASSESSMENTS_IN_UI.add(newAssessment);
 
+                // Refresh view
+                RecyclerView rvAssessments = (RecyclerView) findViewById(R.id.rvAssessments);
+                RecyclerView.Adapter rvAdapter = rvAssessments.getAdapter();
+                rvAdapter.notifyItemInserted(ASSESSMENTS_IN_UI.size() -1);
+
+                // Add assessment to database
+                Repository db = new Repository(getApplication());
+                db.insertAssessment(newAssessment);
             }
         }
 

@@ -54,7 +54,6 @@ public class TermsAdapter extends RecyclerView.Adapter<TermsAdapter.ViewHolder> 
 
         // Return a new holder instance
         ViewHolder termsViewHolder = new ViewHolder(termsView);
-
         return termsViewHolder;
     }
 

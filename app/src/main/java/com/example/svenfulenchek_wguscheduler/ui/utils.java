@@ -2,7 +2,7 @@ package com.example.svenfulenchek_wguscheduler.ui;
 
 // This class stores constant values and utility functions
 public class utils {
-    public static final int DATABASE_VERSION = 9;
+    public static final int DATABASE_VERSION = 11;
 
     // Request codes for all activities are handled HERE
     public static final int TERM_LIST_RETURN = 9;
