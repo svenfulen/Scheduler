@@ -28,7 +28,10 @@ public class TermsAdapter extends RecyclerView.Adapter<TermsAdapter.ViewHolder> 
             termTitle = (TextView) itemView.findViewById(R.id.termTitle);
             termDateRange = (TextView) itemView.findViewById(R.id.termDateRange);
             viewTermButton = (ImageButton) itemView.findViewById(R.id.viewTermButton);
+
+
         }
+
     }
 
     // Store a member variable for the terms

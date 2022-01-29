@@ -14,11 +14,13 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.svenfulenchek_wguscheduler.R;
 import com.example.svenfulenchek_wguscheduler.ui.Database.Repository;
+import com.example.svenfulenchek_wguscheduler.ui.Dialog;
 import com.example.svenfulenchek_wguscheduler.ui.Entity.Course;
 import com.example.svenfulenchek_wguscheduler.ui.Entity.Term;
 import com.example.svenfulenchek_wguscheduler.ui.UI.Adapters.CourseAdapter;
@@ -34,7 +36,7 @@ DATE_RANGE
 TERM_START
 TERM_END
  */
-public class TermView extends AppCompatActivity {
+public class TermView extends AppCompatActivity implements Dialog.DialogListener {
 
     // Data to load into UI
     String TERM_TITLE;
@@ -113,12 +115,8 @@ public class TermView extends AppCompatActivity {
 
                 db.updateTermDetailsById(TERM_ID, TERM_TITLE, TERM_START, TERM_END);
 
-                // TODO: Refresh view in TermsList
-                // Refresh view
-                //RecyclerView rvTerms = (RecyclerView) findViewById(R.id.rvTerms);
-                //RecyclerView.Adapter<TermsAdapter.ViewHolder> rvAdapter = rvTerms.getAdapter();
-                //rvAdapter.notifyItemInserted(TERMS_IN_UI.size() -1);
-
+                // Tells the Term View to refresh
+                setResult(Activity.RESULT_OK);
             }
 
         }
@@ -133,6 +131,14 @@ public class TermView extends AppCompatActivity {
         return true;
     }
 
+    public boolean deleteTermDialog(){
+        return true;
+    }
+
+    public void cannotDeleteTermDialog(){
+
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId() == R.id.editTerm) {
@@ -144,6 +150,19 @@ public class TermView extends AppCompatActivity {
             termEditor.putExtra("TERM_END", TERM_END);
             startActivityForResult(termEditor, utils.EDIT_TERM_REQUEST_CODE);
         }
+        else if(item.getItemId() == R.id.deleteTerm) {
+            Repository db = new Repository(getApplication());
+
+            // Make sure that there are not courses associated with the term.
+            if (db.getCoursesInTerm(TERM_ID).size() > 0) {
+                Dialog error = new Dialog("Error", "This term cannot be deleted because there are courses in the term.", "info");
+                error.show(getSupportFragmentManager(), "Error Dialog");
+            }
+            else {
+                Dialog warning = new Dialog("Warning", "Are you sure you want to delete this term?", "boolean");
+                warning.show(getSupportFragmentManager(), "Warning Dialog");
+            }
+        }
         return true;
     }
 
@@ -152,4 +171,16 @@ public class TermView extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onYesClicked() {
+        Repository db = new Repository(getApplication());
+        Term toDelete = new Term(TERM_TITLE, TERM_START, TERM_END);
+        toDelete.setTermId(TERM_ID);
+        db.deleteTerm(toDelete);
+        setResult(Activity.RESULT_OK);
+        finish();
+
+        TermsList.TERMS_IN_UI.clear();
+        TermsList.TERMS_IN_UI.addAll(db.getAllTerms());
+    }
 }

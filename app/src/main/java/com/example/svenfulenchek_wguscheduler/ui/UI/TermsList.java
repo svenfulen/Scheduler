@@ -17,6 +17,7 @@ import com.example.svenfulenchek_wguscheduler.ui.Database.Repository;
 import com.example.svenfulenchek_wguscheduler.ui.Entity.Term;
 
 import java.util.ArrayList;
+import java.util.concurrent.ExecutorService;
 
 public class TermsList extends AppCompatActivity implements TermsAdapter.termClickListener {
 
@@ -28,10 +29,12 @@ public class TermsList extends AppCompatActivity implements TermsAdapter.termCli
         setContentView(R.layout.activity_terms_list);
 
         // Get data from the repository if not already done
-        if(TERMS_IN_UI.size() < 1) {
-            Repository db = new Repository(getApplication());
-            TERMS_IN_UI.addAll(db.getAllTerms());
-        }
+        //if(TERMS_IN_UI.size() < 1) {
+        TERMS_IN_UI.clear();
+        Repository db = new Repository(getApplication());
+        TERMS_IN_UI.addAll(db.getAllTerms());
+        //}
+
         RecyclerView rvTerms = (RecyclerView) findViewById(R.id.rvTerms);
         // Create a TermsAdapter using data retrieved from the Repository
         TermsAdapter adapter = new TermsAdapter(TERMS_IN_UI, this);
@@ -72,7 +75,16 @@ public class TermsList extends AppCompatActivity implements TermsAdapter.termCli
                 db.insertTerm(newTerm);
 
             }
-
+        }
+        if (requestCode == utils.TERM_LIST_RETURN){
+            if (resultCode == Activity.RESULT_OK){
+                RecyclerView rvTerms = (RecyclerView) findViewById(R.id.rvTerms);
+                RecyclerView.Adapter adapter = rvTerms.getAdapter();
+                TERMS_IN_UI.clear();
+                Repository db = new Repository(getApplication());
+                TERMS_IN_UI.addAll(db.getAllTerms());
+                adapter.notifyDataSetChanged();
+            }
         }
     }
 
@@ -87,7 +99,10 @@ public class TermsList extends AppCompatActivity implements TermsAdapter.termCli
         termView.putExtra("TERM_START", termStart);
         termView.putExtra("TERM_END", termEnd);
 
-        startActivity(termView);
+        startActivityForResult(termView, utils.TERM_LIST_RETURN);
+
+        // Force the TermsList activity to close.  This prevents loading issues.
+        finish();
     }
 
 }
