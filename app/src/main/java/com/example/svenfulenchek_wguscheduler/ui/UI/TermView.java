@@ -81,6 +81,7 @@ public class TermView extends AppCompatActivity implements Dialog.DialogListener
         rvCoursesInTerm.setAdapter(adapter);
         rvCoursesInTerm.setLayoutManager(new LinearLayoutManager(this));
 
+        // Allows the toolbar menu to work.
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar_term_view);
         setSupportActionBar(toolbar);
     }

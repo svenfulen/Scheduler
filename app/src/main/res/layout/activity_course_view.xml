@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.UI.CourseView">
+
+    <ImageButton
+        android:id="@+id/addAssessmentButton"
+        android:layout_width="wrap_content"
+        android:layout_height="43dp"
+        android:backgroundTint="#3F51B5"
+        android:onClick="addAssessmentToCourse"
+        app:layout_constraintBottom_toBottomOf="@+id/assessmentsHeader"
+        app:layout_constraintStart_toEndOf="@+id/assessmentsHeader"
+        app:layout_constraintTop_toTopOf="@+id/assessmentsHeader"
+        app:srcCompat="@drawable/ic_add" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_course_view"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_weight="1"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:textAlignment="viewStart"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:subtitle="Status - courseDateRange"
+        app:subtitleTextColor="#CACACA"
+        app:title="courseTitle"
+        app:titleTextColor="#FFFFFF" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvAssessments"
+        android:layout_width="409dp"
+        android:layout_height="530dp"
+        android:layout_marginTop="144dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_course_view" />
+
+    <Button
+        android:id="@+id/notesButton"
+        android:layout_width="176dp"
+        android:layout_height="64dp"
+        android:layout_marginTop="8dp"
+        android:text="Notes"
+        app:layout_constraintEnd_toStartOf="@+id/instructorsButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_course_view" />
+
+    <Button
+        android:id="@+id/instructorsButton"
+        android:layout_width="176dp"
+        android:layout_height="64dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="Course Instructors"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_course_view" />
+
+    <TextView
+        android:id="@+id/assessmentsHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="Assessments"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/rvAssessments"
+        app:layout_constraintStart_toStartOf="@+id/notesButton"
+        app:layout_constraintTop_toBottomOf="@+id/notesButton" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

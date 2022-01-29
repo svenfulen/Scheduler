@@ -6,11 +6,11 @@ import android.os.Bundle;
 
 import com.example.svenfulenchek_wguscheduler.R;
 
-public class Assessments extends AppCompatActivity {
+public class AssessmentView extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_assessments);
+        setContentView(R.layout.activity_assessment_view);
     }
 }

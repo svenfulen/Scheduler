@@ -4,19 +4,24 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/desmo/AndroidStudioProjects/SvenFulenchek_WGUScheduler/app/src/main/res/drawable-anydpi/ic_add.xml" value="0.26614583333333336" />
+        <entry key="..\:/Users/desmo/AndroidStudioProjects/SvenFulenchek_WGUScheduler/app/src/main/res/drawable-anydpi/ic_edit.xml" value="0.37864583333333335" />
         <entry key="..\:/Users/desmo/AndroidStudioProjects/SvenFulenchek_WGUScheduler/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.37864583333333335" />
+        <entry key="..\:/Users/desmo/AndroidStudioProjects/SvenFulenchek_WGUScheduler/app/src/main/res/drawable/ic_baseline_circle_24.xml" value="0.37864583333333335" />
         <entry key="..\:/Users/desmo/AndroidStudioProjects/SvenFulenchek_WGUScheduler/app/src/main/res/drawable/ic_books_foreground.xml" value="0.37864583333333335" />
         <entry key="..\:/Users/desmo/AndroidStudioProjects/SvenFulenchek_WGUScheduler/app/src/main/res/drawable/ic_launcher_background.xml" value="0.37864583333333335" />
         <entry key="..\:/Users/desmo/AndroidStudioProjects/SvenFulenchek_WGUScheduler/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.37864583333333335" />
         <entry key="..\:/Users/desmo/AndroidStudioProjects/SvenFulenchek_WGUScheduler/app/src/main/res/drawable/layout_border.xml" value="0.403125" />
+        <entry key="..\:/Users/desmo/AndroidStudioProjects/SvenFulenchek_WGUScheduler/app/src/main/res/layout/activity_assessment_editor.xml" value="0.33" />
         <entry key="..\:/Users/desmo/AndroidStudioProjects/SvenFulenchek_WGUScheduler/app/src/main/res/layout/activity_assessments.xml" value="0.3625" />
-        <entry key="..\:/Users/desmo/AndroidStudioProjects/SvenFulenchek_WGUScheduler/app/src/main/res/layout/activity_course_editor.xml" value="0.3625" />
+        <entry key="..\:/Users/desmo/AndroidStudioProjects/SvenFulenchek_WGUScheduler/app/src/main/res/layout/activity_course_editor.xml" value="0.2983425414364641" />
+        <entry key="..\:/Users/desmo/AndroidStudioProjects/SvenFulenchek_WGUScheduler/app/src/main/res/layout/activity_course_view.xml" value="0.2011173184357542" />
         <entry key="..\:/Users/desmo/AndroidStudioProjects/SvenFulenchek_WGUScheduler/app/src/main/res/layout/activity_courses.xml" value="0.3625" />
         <entry key="..\:/Users/desmo/AndroidStudioProjects/SvenFulenchek_WGUScheduler/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Users/desmo/AndroidStudioProjects/SvenFulenchek_WGUScheduler/app/src/main/res/layout/activity_term_editor.xml" value="0.5" />
         <entry key="..\:/Users/desmo/AndroidStudioProjects/SvenFulenchek_WGUScheduler/app/src/main/res/layout/activity_term_view.xml" value="0.5" />
         <entry key="..\:/Users/desmo/AndroidStudioProjects/SvenFulenchek_WGUScheduler/app/src/main/res/layout/activity_terms.xml" value="0.4222972972972973" />
         <entry key="..\:/Users/desmo/AndroidStudioProjects/SvenFulenchek_WGUScheduler/app/src/main/res/layout/activity_terms_list.xml" value="0.3625" />
+        <entry key="..\:/Users/desmo/AndroidStudioProjects/SvenFulenchek_WGUScheduler/app/src/main/res/layout/list_item_assessment.xml" value="0.75" />
         <entry key="..\:/Users/desmo/AndroidStudioProjects/SvenFulenchek_WGUScheduler/app/src/main/res/layout/list_item_course.xml" value="0.33" />
         <entry key="..\:/Users/desmo/AndroidStudioProjects/SvenFulenchek_WGUScheduler/app/src/main/res/layout/list_item_term.xml" value="0.75" />
         <entry key="..\:/Users/desmo/AndroidStudioProjects/SvenFulenchek_WGUScheduler/app/src/main/res/menu/term_view_menu.xml" value="0.3625" />

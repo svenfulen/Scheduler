@@ -4,15 +4,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.UI.CourseEditor">
+    tools:context=".ui.UI.AssessmentEditor">
 
     <Button
-        android:id="@+id/courseEndField"
+        android:id="@+id/assessmentSubmitButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:onClick="onUserFinished"
+        android:text="DONE"
+        app:layout_constraintEnd_toEndOf="@+id/assessmentEndField"
+        app:layout_constraintTop_toBottomOf="@+id/assessmentEndField" />
+
+    <Spinner
+        android:id="@+id/assessmentTypeSpinner"
         android:layout_width="180dp"
         android:layout_height="52dp"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
+        app:layout_constraintStart_toStartOf="@+id/assessmentStartField"
+        app:layout_constraintTop_toBottomOf="@+id/assessmentStartField" />
+
+    <Button
+        android:id="@+id/assessmentEndField"
+        android:layout_width="180dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="16dp"
         android:backgroundTint="#FFFFFF"
         android:fontFamily="sans-serif"
         android:text="End Date"
@@ -20,16 +36,14 @@
         android:textAllCaps="false"
         android:textColor="#8A8A8A"
         app:cornerRadius="0dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/courseStartField"
-        app:layout_constraintTop_toBottomOf="@+id/courseTitleField" />
+        app:layout_constraintEnd_toEndOf="@+id/assessmentTitleField"
+        app:layout_constraintTop_toBottomOf="@+id/assessmentTitleField" />
 
     <Button
-        android:id="@+id/courseStartField"
+        android:id="@+id/assessmentStartField"
         android:layout_width="180dp"
         android:layout_height="52dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="16dp"
         android:backgroundTint="#FFFFFF"
         android:fontFamily="sans-serif"
         android:text="Start Date"
@@ -37,36 +51,27 @@
         android:textAllCaps="false"
         android:textColor="#8A8A8A"
         app:cornerRadius="0dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/courseSubmitButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:onClick="onUserFinished"
-        android:text="DONE"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/courseEndField" />
+        app:layout_constraintStart_toStartOf="@+id/assessmentTitleField"
+        app:layout_constraintTop_toBottomOf="@+id/assessmentTitleField" />
 
     <EditText
-        android:id="@+id/courseTitleField"
+        android:id="@+id/assessmentTitleField"
         android:layout_width="380dp"
         android:layout_height="52dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:ems="10"
-        android:hint="Course Title"
+        android:hint="Assessment Title"
         android:inputType="textPersonName"
         android:maxLength="24"
         android:maxLines="1"
-        app:layout_constraintBottom_toTopOf="@+id/courseStartField"
+        app:layout_constraintBottom_toTopOf="@+id/assessmentEndField"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar_course_editor" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_assessment_editor" />
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar_course_editor"
+        android:id="@+id/toolbar_assessment_editor"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
@@ -76,16 +81,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <Spinner
-        android:id="@+id/courseStatusSpinner"
-        android:layout_width="180dp"
-        android:layout_height="52dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="112dp"
-        app:layout_constraintEnd_toStartOf="@+id/courseSubmitButton"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/courseStartField" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

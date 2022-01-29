@@ -60,7 +60,12 @@ public class CourseEditor extends AppCompatActivity implements DatePickerDialog.
             String courseTitle = existingCourseData.getStringExtra("COURSE_TITLE");
             String courseStart = existingCourseData.getStringExtra("COURSE_START");
             String courseEnd = existingCourseData.getStringExtra("COURSE_END");
-            String courseStatus = existingCourseData.getStringExtra("COURSE_STATUS");
+            // TODO: GARBAGE String courseStatus = existingCourseData.getStringExtra("COURSE_STATUS");
+
+            courseTitleField.setText(courseTitle);
+            courseStartField.setText(courseStart);
+            courseEndField.setText(courseEnd);
+
         }
 
         // Open a date picker when the start/end date fields are clicked
@@ -115,7 +120,7 @@ public class CourseEditor extends AppCompatActivity implements DatePickerDialog.
 
         // Make sure the user has entered in all details
         if (!course_title.isEmpty() && !course_end.equals("End Date") && !course_start.equals("Start Date")) {
-            // Return new term data
+            // Return new course data
             try {
                 Intent extras = new Intent();
                 extras.putExtra("COURSE_TITLE", course_title);

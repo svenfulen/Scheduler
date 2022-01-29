@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SvenFulenchek_WGUScheduler">
         <activity
+            android:name=".ui.UI.AssessmentEditor"
+            android:exported="false" />
+        <activity
+            android:name=".ui.UI.CourseView"
+            android:exported="false" />
+        <activity
             android:name=".ui.UI.CourseEditor"
             android:exported="false" />
         <activity
@@ -19,7 +25,7 @@
             android:name=".ui.UI.TermEditor"
             android:exported="false" />
         <activity
-            android:name=".ui.UI.Assessments"
+            android:name=".ui.UI.AssessmentView"
             android:exported="false"
             android:parentActivityName=".ui.UI.MainActivity" />
         <activity
