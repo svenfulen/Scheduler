@@ -24,6 +24,7 @@ import com.example.svenfulenchek_wguscheduler.ui.Dialog;
 import com.example.svenfulenchek_wguscheduler.ui.Entity.Course;
 import com.example.svenfulenchek_wguscheduler.ui.Entity.Term;
 import com.example.svenfulenchek_wguscheduler.ui.UI.Adapters.CourseAdapter;
+import com.example.svenfulenchek_wguscheduler.ui.UI.Adapters.TermsAdapter;
 import com.example.svenfulenchek_wguscheduler.ui.utils;
 
 import java.util.ArrayList;
@@ -118,8 +119,28 @@ public class TermView extends AppCompatActivity implements Dialog.DialogListener
                 // Tells the Term View to refresh
                 setResult(Activity.RESULT_OK);
             }
-
         }
+        if (requestCode == utils.ADD_COURSE_REQUEST_CODE) {
+            if (resultCode == Activity.RESULT_OK) {
+                // Add course to view
+                String courseTitle = data.getStringExtra("COURSE_TITLE");
+                String courseStart = data.getStringExtra("COURSE_START");
+                String courseEnd = data.getStringExtra("COURSE_END");
+                String courseStatus = data.getStringExtra("COURSE_STATUS");
+                COURSES_IN_UI.add(new Course(TERM_ID, courseTitle, courseStart, courseEnd, courseStatus));
+
+                // Refresh view
+                RecyclerView rvCourses = (RecyclerView) findViewById(R.id.rvCourses);
+                RecyclerView.Adapter rvAdapter = rvCourses.getAdapter();
+                rvAdapter.notifyItemInserted(COURSES_IN_UI.size() -1);
+
+                // Add course to database
+                Repository db = new Repository(getApplication());
+                Course newCourse = new Course(TERM_ID, courseTitle, courseStart, courseEnd, courseStatus);
+                db.insertCourse(newCourse);
+            }
+        }
+
     }
 
     @Override
@@ -168,7 +189,9 @@ public class TermView extends AppCompatActivity implements Dialog.DialogListener
 
 
     public void addCourseToTerm(View view){
-
+        Intent courseEditor = new Intent(this, CourseEditor.class);
+        courseEditor.putExtra("EDIT", false);
+        startActivityForResult(courseEditor, utils.ADD_COURSE_REQUEST_CODE);
     }
 
     @Override

@@ -44,12 +44,13 @@
         app:layout_constraintTop_toBottomOf="@+id/toolbar_term_view" />
 
     <ImageButton
-        android:id="@+id/imageButton3"
+        android:id="@+id/addCourseButton"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:backgroundTint="#3F51B5"
+        android:onClick="addCourseToTerm"
         app:layout_constraintBottom_toBottomOf="@+id/courses_header"
         app:layout_constraintStart_toEndOf="@+id/courses_header"
         app:layout_constraintTop_toTopOf="@+id/courses_header"

@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/listItemCourse"
     android:layout_width="match_parent"
-    android:layout_height="75dp">
+    android:layout_height="75dp"
+    android:background="@drawable/layout_border">
 
     <ImageButton
         android:id="@+id/view_course_button"
@@ -18,11 +19,13 @@
         app:srcCompat="@drawable/ic_forward" />
 
     <TextView
-        android:id="@+id/course_name"
+        android:id="@+id/li_course_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
         android:text="courseName"
         android:textSize="24sp"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="21dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

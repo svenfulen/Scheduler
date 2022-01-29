@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.svenfulenchek_wguscheduler.R;
 import com.example.svenfulenchek_wguscheduler.ui.Entity.Course;
-import com.example.svenfulenchek_wguscheduler.ui.Entity.Term;
 
 import java.util.List;
 
@@ -21,7 +20,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder
         public TextView courseTitle;
         public ViewHolder(View itemView) {
             super(itemView);
-            courseTitle = (TextView) itemView.findViewById(R.id.course_name);
+            this.courseTitle = (TextView) itemView.findViewById(R.id.li_course_name);
         }
     }
 
@@ -37,21 +36,21 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder
         LayoutInflater inflater = LayoutInflater.from(context);
 
         // Inflate the layout
-        View courseView = inflater.inflate(R.layout.list_item_term, parent, false);
+        View courseView = inflater.inflate(R.layout.list_item_course, parent, false);
 
         // Return a new holder instance
-        CourseAdapter.ViewHolder courseViewHolder = new CourseAdapter.ViewHolder(courseView);
+        CourseAdapter.ViewHolder courseViewHolder = new ViewHolder(courseView);
         return courseViewHolder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull CourseAdapter.ViewHolder holder, int position) {
         // Get the data model based on position
         Course course = mCourses.get(position);
 
         // Set item views
-        TextView termTitle = holder.courseTitle;
-        termTitle.setText(course.getTitle());
+        TextView courseTitle = holder.courseTitle;
+        courseTitle.setText(course.getTitle());
     }
 
     @Override

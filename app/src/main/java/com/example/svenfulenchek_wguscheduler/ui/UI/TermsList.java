@@ -17,9 +17,10 @@ import com.example.svenfulenchek_wguscheduler.ui.Database.Repository;
 import com.example.svenfulenchek_wguscheduler.ui.Entity.Term;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 
-public class TermsList extends AppCompatActivity implements TermsAdapter.termClickListener {
+public class TermsList extends AppCompatActivity{
 
     public static ArrayList<Term> TERMS_IN_UI = new ArrayList<Term>();
 
@@ -28,16 +29,17 @@ public class TermsList extends AppCompatActivity implements TermsAdapter.termCli
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_terms_list);
 
-        // Get data from the repository if not already done
-        //if(TERMS_IN_UI.size() < 1) {
-        TERMS_IN_UI.clear();
+        // Get data from the repository if there is any
         Repository db = new Repository(getApplication());
-        TERMS_IN_UI.addAll(db.getAllTerms());
-        //}
+        List<Term> termsInDatabase = db.getAllTerms();
+        if(termsInDatabase != null && termsInDatabase.size() > 0) {
+            TERMS_IN_UI.clear();
+            TERMS_IN_UI.addAll(termsInDatabase);
+        }
 
         RecyclerView rvTerms = (RecyclerView) findViewById(R.id.rvTerms);
         // Create a TermsAdapter using data retrieved from the Repository
-        TermsAdapter adapter = new TermsAdapter(TERMS_IN_UI, this);
+        TermsAdapter adapter = new TermsAdapter(TERMS_IN_UI);
         // Attach the adapter to the recyclerview to populate items
         rvTerms.setAdapter(adapter);
         // Set layout manager to position the items
@@ -88,21 +90,6 @@ public class TermsList extends AppCompatActivity implements TermsAdapter.termCli
         }
     }
 
-    // Open the term's detailed view
-    @Override
-    public void onTermClick(int termId, String termTitle, String termStart, String termEnd){
-        Intent termView = new Intent(TermsList.this, TermView.class);
 
-        // Pass values to the new activity
-        termView.putExtra("TERM_ID", termId);
-        termView.putExtra("TERM_TITLE", termTitle);
-        termView.putExtra("TERM_START", termStart);
-        termView.putExtra("TERM_END", termEnd);
-
-        startActivityForResult(termView, utils.TERM_LIST_RETURN);
-
-        // Force the TermsList activity to close.  This prevents loading issues.
-        finish();
-    }
 
 }

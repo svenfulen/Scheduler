@@ -1,4 +1,12 @@
 <resources>
     <string name="app_name">Sven Fulenchek_WGU Scheduler</string>
     <string name="terms_header">TERMS</string>
+
+    <string-array name="course_status">
+        <item>In Progress</item>
+        <item>Completed</item>
+        <item>Plan to Take</item>
+        <item>Dropped</item>
+    </string-array>
+
 </resources>

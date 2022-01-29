@@ -17,10 +17,10 @@ import com.example.svenfulenchek_wguscheduler.R;
 /*
 This class can be used to add or edit terms.
 To edit an existing term, use Intent.putExtra("EDIT", true); and pass existing term data:
-TERM_ID
-TERM_TITLE
-TERM_START
-TERM_END
+TERM_ID - int
+TERM_TITLE - string
+TERM_START - string
+TERM_END - string
 When the activity is finished and editMode is set to true, it will return extras including Term ID
  */
 public class TermEditor extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
@@ -53,9 +53,10 @@ public class TermEditor extends AppCompatActivity implements DatePickerDialog.On
             String termStart = existingTermData.getStringExtra("TERM_START");
             String termEnd = existingTermData.getStringExtra("TERM_END");
 
-            if (!termTitle.isEmpty()) { termTitleField.setText(termTitle); }
-            if (!termStart.isEmpty()) { startDateField.setText(termStart); }
-            if (!termEnd.isEmpty()) { endDateField.setText(termEnd); }
+            //TODO: GARBAGE
+            //if (!termTitle.isEmpty()) { termTitleField.setText(termTitle); }
+            //if (!termStart.isEmpty()) { startDateField.setText(termStart); }
+            //if (!termEnd.isEmpty()) { endDateField.setText(termEnd); }
 
         }
 

@@ -1,6 +1,7 @@
 package com.example.svenfulenchek_wguscheduler.ui.UI.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.svenfulenchek_wguscheduler.R;
 import com.example.svenfulenchek_wguscheduler.ui.Entity.Term;
+import com.example.svenfulenchek_wguscheduler.ui.UI.TermView;
+import com.example.svenfulenchek_wguscheduler.ui.UI.TermsList;
+import com.example.svenfulenchek_wguscheduler.ui.utils;
 
 import java.util.List;
 
@@ -28,20 +32,16 @@ public class TermsAdapter extends RecyclerView.Adapter<TermsAdapter.ViewHolder> 
             termTitle = (TextView) itemView.findViewById(R.id.termTitle);
             termDateRange = (TextView) itemView.findViewById(R.id.termDateRange);
             viewTermButton = (ImageButton) itemView.findViewById(R.id.viewTermButton);
-
-
         }
 
     }
 
     // Store a member variable for the terms
     private List<Term> mTerms;
-    private termClickListener onTermClickListener;
 
     // Pass the data to the adapter
-    public TermsAdapter(List<Term> terms, termClickListener clickListener) {
+    public TermsAdapter(List<Term> terms) {
         this.mTerms = terms;
-        this.onTermClickListener = clickListener;
     }
 
     @Override
@@ -54,6 +54,7 @@ public class TermsAdapter extends RecyclerView.Adapter<TermsAdapter.ViewHolder> 
 
         // Return a new holder instance
         ViewHolder termsViewHolder = new ViewHolder(termsView);
+
         return termsViewHolder;
     }
 
@@ -74,14 +75,19 @@ public class TermsAdapter extends RecyclerView.Adapter<TermsAdapter.ViewHolder> 
         holder.viewTermButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view){
-                onTermClickListener.onTermClick(term.getTermId(), term.getTermTitle(), term.getStartDate(), term.getEndDate());
+                // Open the term's detailed view
+                Intent termView = new Intent(view.getContext(), TermView.class);
+
+                // Pass values to the new activity
+                termView.putExtra("TERM_ID", term.getTermId());
+                termView.putExtra("TERM_TITLE", term.getTermTitle());
+                termView.putExtra("TERM_START", term.getStartDate());
+                termView.putExtra("TERM_END", term.getEndDate());
+
+                view.getContext().startActivity(termView);
             }
         });
 
-    }
-
-    public interface termClickListener {
-        void onTermClick(int termId, String termTitle, String termStart, String termEnd);
     }
 
     // Returns the total count of items in the list

@@ -10,6 +10,9 @@
         android:id="@+id/courseEndField"
         android:layout_width="180dp"
         android:layout_height="52dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:backgroundTint="#FFFFFF"
         android:fontFamily="sans-serif"
         android:text="End Date"
@@ -17,13 +20,16 @@
         android:textAllCaps="false"
         android:textColor="#8A8A8A"
         app:cornerRadius="0dp"
-        tools:layout_editor_absoluteX="215dp"
-        tools:layout_editor_absoluteY="137dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/courseStartField"
+        app:layout_constraintTop_toBottomOf="@+id/courseTitleField" />
 
     <Button
         android:id="@+id/courseStartField"
         android:layout_width="180dp"
         android:layout_height="52dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="140dp"
         android:backgroundTint="#FFFFFF"
         android:fontFamily="sans-serif"
         android:text="Start Date"
@@ -31,16 +37,19 @@
         android:textAllCaps="false"
         android:textColor="#8A8A8A"
         app:cornerRadius="0dp"
-        tools:layout_editor_absoluteX="15dp"
-        tools:layout_editor_absoluteY="137dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/courseSubmitButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:onClick="onUserFinished"
         android:text="DONE"
-        tools:layout_editor_absoluteX="307dp"
-        tools:layout_editor_absoluteY="208dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/courseEndField" />
 
     <EditText
         android:id="@+id/courseTitleField"
@@ -51,8 +60,10 @@
         android:inputType="textPersonName"
         android:maxLength="24"
         android:maxLines="1"
-        tools:layout_editor_absoluteX="15dp"
-        tools:layout_editor_absoluteY="70dp" />
+        app:layout_constraintBottom_toTopOf="@+id/courseStartField"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_term_editor2" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_term_editor2"
@@ -62,14 +73,19 @@
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
         android:id="@+id/courseStatusSpinner"
         android:layout_width="180dp"
         android:layout_height="52dp"
-        tools:layout_editor_absoluteX="15dp"
-        tools:layout_editor_absoluteY="204dp" />
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="112dp"
+        app:layout_constraintEnd_toStartOf="@+id/courseSubmitButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/courseStartField" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
