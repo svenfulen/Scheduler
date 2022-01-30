@@ -1,5 +1,6 @@
 package com.example.svenfulenchek_wguscheduler.ui.UI.Adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.svenfulenchek_wguscheduler.R;
 import com.example.svenfulenchek_wguscheduler.ui.Entity.Course;
 import com.example.svenfulenchek_wguscheduler.ui.UI.CourseView;
+import com.example.svenfulenchek_wguscheduler.ui.utils;
 
 import java.util.List;
 
@@ -72,7 +74,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder
                 courseView.putExtra("TERM_ID", course.getTermId());
                 courseView.putExtra("COURSE_ID", course.getId());
 
-                view.getContext().startActivity(courseView);
+                ((Activity)view.getContext()).startActivityForResult(courseView, utils.TERM_VIEW_RETURN);
             }
         });
 

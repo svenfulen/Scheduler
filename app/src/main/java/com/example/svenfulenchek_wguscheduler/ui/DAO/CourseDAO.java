@@ -28,4 +28,7 @@ public interface CourseDAO {
 
     @Query("SELECT * FROM COURSES WHERE termId=:termId")
     public List<Course> getCoursesInTerm(int termId);
+
+    @Query("DELETE FROM COURSES WHERE id=:courseId")
+    void deleteById(int courseId);
 }

@@ -1,5 +1,6 @@
 package com.example.svenfulenchek_wguscheduler.ui.UI;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -12,14 +13,10 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
 
 import com.example.svenfulenchek_wguscheduler.R;
 import com.example.svenfulenchek_wguscheduler.ui.Database.Repository;
-import com.example.svenfulenchek_wguscheduler.ui.Dialog;
 import com.example.svenfulenchek_wguscheduler.ui.Entity.Assessment;
-import com.example.svenfulenchek_wguscheduler.ui.Entity.Course;
-import com.example.svenfulenchek_wguscheduler.ui.Entity.Term;
 import com.example.svenfulenchek_wguscheduler.ui.UI.Adapters.AssessmentAdapter;
 import com.example.svenfulenchek_wguscheduler.ui.utils;
 
@@ -98,6 +95,27 @@ public class CourseView extends AppCompatActivity {
         MenuInflater inflater = getMenuInflater();
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar_course_view);
         inflater.inflate(R.menu.course_view_menu, toolbar.getMenu());
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(item.getItemId() == R.id.editCourse) {
+            Intent courseEditor = new Intent(CourseView.this, CourseEditor.class);
+            courseEditor.putExtra("EDIT", true);
+            courseEditor.putExtra("COURSE_ID", COURSE_ID);
+            courseEditor.putExtra("COURSE_TITLE", COURSE_TITLE);
+            courseEditor.putExtra("COURSE_START", COURSE_START);
+            courseEditor.putExtra("COURSE_END", COURSE_END);
+            courseEditor.putExtra("COURSE_STATUS", COURSE_STATUS);
+            startActivityForResult(courseEditor, utils.EDIT_COURSE_REQUEST_CODE);
+        }
+        else if(item.getItemId() == R.id.deleteCourse){
+            Repository db = new Repository(getApplication());
+            db.deleteCourseById(COURSE_ID);
+            setResult(Activity.RESULT_CANCELED);
+            finish();
+        }
         return true;
     }
 

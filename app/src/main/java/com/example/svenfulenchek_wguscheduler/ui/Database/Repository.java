@@ -102,6 +102,18 @@ public class Repository {
         }
     }
 
+    public void deleteCourseById(int courseId){
+        databaseExecutor.execute(()->{
+            mCourseDAO.deleteById(courseId);
+        });
+        try {
+            Thread.sleep(1000);
+        }
+        catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
     public List<Course> getCoursesInTerm(int termId){
         databaseExecutor.execute(()->{
             coursesInTerm = mCourseDAO.getCoursesInTerm(termId);

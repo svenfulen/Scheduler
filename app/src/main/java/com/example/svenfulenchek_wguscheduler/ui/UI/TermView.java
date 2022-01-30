@@ -140,6 +140,17 @@ public class TermView extends AppCompatActivity implements Dialog.DialogListener
                 db.insertCourse(newCourse);
             }
         }
+        if (requestCode == utils.TERM_VIEW_RETURN) {
+            if (resultCode == Activity.RESULT_CANCELED) {
+                updateTermView();
+                Repository db = new Repository(getApplication());
+                COURSES_IN_UI.clear();
+                COURSES_IN_UI.addAll(db.getCoursesInTerm(TERM_ID));
+                RecyclerView rvCoursesInTerm = (RecyclerView) findViewById(R.id.rvCourses);
+                CourseAdapter adapter = (CourseAdapter) rvCoursesInTerm.getAdapter();
+                adapter.notifyDataSetChanged();
+            }
+        }
 
     }
 
@@ -178,7 +189,6 @@ public class TermView extends AppCompatActivity implements Dialog.DialogListener
         }
         return true;
     }
-
 
     public void addCourseToTerm(View view){
         Intent courseEditor = new Intent(this, CourseEditor.class);
