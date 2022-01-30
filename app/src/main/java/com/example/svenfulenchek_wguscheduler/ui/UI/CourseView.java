@@ -8,11 +8,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 
 import com.example.svenfulenchek_wguscheduler.R;
 import com.example.svenfulenchek_wguscheduler.ui.Database.Repository;
+import com.example.svenfulenchek_wguscheduler.ui.Dialog;
 import com.example.svenfulenchek_wguscheduler.ui.Entity.Assessment;
 import com.example.svenfulenchek_wguscheduler.ui.Entity.Course;
 import com.example.svenfulenchek_wguscheduler.ui.Entity.Term;
@@ -86,6 +90,15 @@ public class CourseView extends AppCompatActivity {
         Intent assessmentEditor = new Intent(this, AssessmentEditor.class);
         assessmentEditor.putExtra("EDIT", false);
         startActivityForResult(assessmentEditor, utils.ADD_ASSESSMENT_REQUEST_CODE);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Create options menu
+        MenuInflater inflater = getMenuInflater();
+        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar_course_view);
+        inflater.inflate(R.menu.course_view_menu, toolbar.getMenu());
+        return true;
     }
 
     @Override

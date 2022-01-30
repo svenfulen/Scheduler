@@ -66,11 +66,10 @@ public class TermView extends AppCompatActivity implements Dialog.DialogListener
         dateRange = TERM_START + " - " + TERM_END;
         TERM_ID = existingTermData.getIntExtra("TERM_ID", 0);
 
-        // Get courses in term if not already done
-        if(COURSES_IN_UI.size() < 1) {
-            Repository db = new Repository(getApplication());
-            COURSES_IN_UI.addAll(db.getCoursesInTerm(TERM_ID));
-        }
+        // Get courses in term
+        Repository db = new Repository(getApplication());
+        COURSES_IN_UI.clear();
+        COURSES_IN_UI.addAll(db.getCoursesInTerm(TERM_ID));
 
         // Populate UI
         updateTermView();
@@ -151,14 +150,6 @@ public class TermView extends AppCompatActivity implements Dialog.DialogListener
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar_term_view);
         inflater.inflate(R.menu.term_view_menu, toolbar.getMenu());
         return true;
-    }
-
-    public boolean deleteTermDialog(){
-        return true;
-    }
-
-    public void cannotDeleteTermDialog(){
-
     }
 
     @Override

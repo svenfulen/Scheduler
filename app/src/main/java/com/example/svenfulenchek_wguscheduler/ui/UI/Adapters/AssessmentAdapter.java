@@ -65,10 +65,10 @@ public class AssessmentAdapter extends RecyclerView.Adapter<AssessmentAdapter.Vi
         String dateRange = assessment.getStartDate() + " - " + assessment.getEndDate();
         holder.assessmentDateRange.setText(dateRange);
         if (assessment.getType().equals("Performance")) {
-            holder.assessmentTypeLetter.setText("P");
+            holder.assessmentTypeLetter.setText("PERFORMANCE ASSESSMENT");
         }
         if (assessment.getType().equals("Objective")) {
-            holder.assessmentTypeLetter.setText("O");
+            holder.assessmentTypeLetter.setText("OBJECTIVE ASSESSMENT");
         }
 
         holder.viewAssessmentButton.setOnClickListener(new View.OnClickListener() {
