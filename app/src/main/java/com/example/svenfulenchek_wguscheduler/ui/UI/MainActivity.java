@@ -8,13 +8,19 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.svenfulenchek_wguscheduler.R;
+import com.example.svenfulenchek_wguscheduler.ui.Database.Repository;
+import com.example.svenfulenchek_wguscheduler.ui.UI.Terms.TermsList;
 
 public class MainActivity extends AppCompatActivity {
+
+    public static Repository db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        db = new Repository(getApplication());
 
     }
 

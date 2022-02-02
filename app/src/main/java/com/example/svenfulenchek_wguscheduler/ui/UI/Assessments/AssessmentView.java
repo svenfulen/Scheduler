@@ -1,10 +1,8 @@
-package com.example.svenfulenchek_wguscheduler.ui.UI;
+package com.example.svenfulenchek_wguscheduler.ui.UI.Assessments;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -12,16 +10,11 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
 
 import com.example.svenfulenchek_wguscheduler.R;
 import com.example.svenfulenchek_wguscheduler.ui.Database.Repository;
-import com.example.svenfulenchek_wguscheduler.ui.Entity.Assessment;
-import com.example.svenfulenchek_wguscheduler.ui.UI.Adapters.AssessmentAdapter;
 import com.example.svenfulenchek_wguscheduler.ui.utils;
-
-import java.util.ArrayList;
 
 /*
 Required extras:
@@ -121,6 +114,9 @@ public class AssessmentView extends AppCompatActivity {
                 dateRange = ASSESSMENT_START + " - " + ASSESSMENT_END;
 
                 // Populate view
+                finish();
+                startActivity(getIntent());
+                /*
                 TextView assessmentTitle = (TextView)findViewById(R.id.assessmentTitle);
                 TextView assessmentType = (TextView)findViewById(R.id.assessmentType);
                 TextView assessmentDateRange = (TextView)findViewById(R.id.assessmentDates);
@@ -132,6 +128,8 @@ public class AssessmentView extends AppCompatActivity {
                 Repository db = new Repository(getApplication());
                 db.updateAssessmentDetailsById(ASSESSMENT_ID, ASSESSMENT_TITLE, ASSESSMENT_START, ASSESSMENT_END);
                 setResult(Activity.RESULT_OK);
+
+                 */
             }
         }
 

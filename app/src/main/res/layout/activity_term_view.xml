@@ -5,7 +5,7 @@
     android:id="@+id/termView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.UI.TermView">
+    tools:context=".ui.UI.Terms.TermView">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_term_view"

@@ -1,8 +1,8 @@
 package com.example.svenfulenchek_wguscheduler.ui.UI.Adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,8 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.svenfulenchek_wguscheduler.R;
 import com.example.svenfulenchek_wguscheduler.ui.Entity.Term;
-import com.example.svenfulenchek_wguscheduler.ui.UI.TermView;
-import com.example.svenfulenchek_wguscheduler.ui.UI.TermsList;
+import com.example.svenfulenchek_wguscheduler.ui.UI.Terms.TermView;
 import com.example.svenfulenchek_wguscheduler.ui.utils;
 
 import java.util.List;
@@ -83,7 +82,7 @@ public class TermsAdapter extends RecyclerView.Adapter<TermsAdapter.ViewHolder> 
                 termView.putExtra("TERM_START", term.getStartDate());
                 termView.putExtra("TERM_END", term.getEndDate());
 
-                view.getContext().startActivity(termView);
+                ((Activity)view.getContext()).startActivityForResult(termView, utils.TERM_LIST_RETURN);
             }
         });
 

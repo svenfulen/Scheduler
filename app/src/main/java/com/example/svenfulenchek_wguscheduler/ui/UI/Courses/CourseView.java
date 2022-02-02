@@ -1,4 +1,4 @@
-package com.example.svenfulenchek_wguscheduler.ui.UI;
+package com.example.svenfulenchek_wguscheduler.ui.UI.Courses;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +18,7 @@ import com.example.svenfulenchek_wguscheduler.R;
 import com.example.svenfulenchek_wguscheduler.ui.Database.Repository;
 import com.example.svenfulenchek_wguscheduler.ui.Entity.Assessment;
 import com.example.svenfulenchek_wguscheduler.ui.UI.Adapters.AssessmentAdapter;
+import com.example.svenfulenchek_wguscheduler.ui.UI.Assessments.AssessmentEditor;
 import com.example.svenfulenchek_wguscheduler.ui.utils;
 
 import java.util.ArrayList;
@@ -146,12 +147,17 @@ public class CourseView extends AppCompatActivity {
 
         if (requestCode == utils.COURSE_VIEW_RETURN) {
             if (resultCode == Activity.RESULT_OK) {
+                finish();
+                startActivity(getIntent());
+                /*
                 Repository db = new Repository(getApplication());
                 ASSESSMENTS_IN_UI.clear();
                 ASSESSMENTS_IN_UI.addAll(db.getAssessmentsInCourse(COURSE_ID));
                 RecyclerView rvAssessments = (RecyclerView) findViewById(R.id.rvAssessments);
                 AssessmentAdapter adapter = (AssessmentAdapter)rvAssessments.getAdapter();
                 adapter.notifyDataSetChanged();
+
+                 */
             }
         }
 

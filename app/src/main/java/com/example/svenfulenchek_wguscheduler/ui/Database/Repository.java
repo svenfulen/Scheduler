@@ -54,9 +54,9 @@ public class Repository {
         }
     }
 
-    public void deleteTerm(Term term){
+    public void deleteTermById(int id){
         databaseExecutor.execute(()->{
-            mTermDAO.delete(term);
+            mTermDAO.deleteById(id);
         });
         try {
             Thread.sleep(1000);
@@ -65,6 +65,7 @@ public class Repository {
             e.printStackTrace();
         }
     }
+
     public List<Term> getAllTerms(){
         databaseExecutor.execute(()->{
             mAllTerms = mTermDAO.getAllTerms();

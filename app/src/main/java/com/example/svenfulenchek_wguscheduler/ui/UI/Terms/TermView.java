@@ -1,7 +1,5 @@
-package com.example.svenfulenchek_wguscheduler.ui.UI;
+package com.example.svenfulenchek_wguscheduler.ui.UI.Terms;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -9,12 +7,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
 
@@ -24,7 +20,8 @@ import com.example.svenfulenchek_wguscheduler.ui.Dialog;
 import com.example.svenfulenchek_wguscheduler.ui.Entity.Course;
 import com.example.svenfulenchek_wguscheduler.ui.Entity.Term;
 import com.example.svenfulenchek_wguscheduler.ui.UI.Adapters.CourseAdapter;
-import com.example.svenfulenchek_wguscheduler.ui.UI.Adapters.TermsAdapter;
+import com.example.svenfulenchek_wguscheduler.ui.UI.Courses.CourseEditor;
+import com.example.svenfulenchek_wguscheduler.ui.UI.MainActivity;
 import com.example.svenfulenchek_wguscheduler.ui.utils;
 
 import java.util.ArrayList;
@@ -38,6 +35,8 @@ TERM_START
 TERM_END
  */
 public class TermView extends AppCompatActivity implements Dialog.DialogListener {
+
+    Repository db;
 
     // Data to load into UI
     String TERM_TITLE;
@@ -59,6 +58,8 @@ public class TermView extends AppCompatActivity implements Dialog.DialogListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_term_view);
 
+        db = MainActivity.db;
+
         Intent existingTermData = getIntent();
         TERM_TITLE = existingTermData.getStringExtra("TERM_TITLE");
         TERM_START = existingTermData.getStringExtra("TERM_START");
@@ -67,7 +68,7 @@ public class TermView extends AppCompatActivity implements Dialog.DialogListener
         TERM_ID = existingTermData.getIntExtra("TERM_ID", 0);
 
         // Get courses in term
-        Repository db = new Repository(getApplication());
+
         COURSES_IN_UI.clear();
         COURSES_IN_UI.addAll(db.getCoursesInTerm(TERM_ID));
 
@@ -91,35 +92,20 @@ public class TermView extends AppCompatActivity implements Dialog.DialogListener
 
         if (requestCode == utils.EDIT_TERM_REQUEST_CODE) {
             if (resultCode == Activity.RESULT_OK) {
-
-                Repository db = new Repository(getApplication());
-
                 String newTermTitle = data.getStringExtra("TERM_TITLE");
                 String newTermStart = data.getStringExtra("TERM_START");
                 String newTermEnd = data.getStringExtra("TERM_END");
 
-                Term existingTerm = new Term(TERM_TITLE, TERM_START, TERM_END);
-                existingTerm.setTermId(TERM_ID);
-
-                Term modifiedTerm = new Term(newTermTitle, newTermStart, newTermEnd);
-                modifiedTerm.setTermId(TERM_ID);
-
-                // Quick and dirty way to refresh the TermsList ui
-                TermsList.TERMS_IN_UI.clear();
-                TermsList.TERMS_IN_UI.addAll(db.getAllTerms());
-
                 TERM_TITLE = newTermTitle;
                 TERM_START = newTermStart;
                 TERM_END = newTermEnd;
+                dateRange = TERM_START + " - " + TERM_END;
 
                 updateTermView();
-
                 db.updateTermDetailsById(TERM_ID, TERM_TITLE, TERM_START, TERM_END);
-
-                // Tells the Term View to refresh
-                setResult(Activity.RESULT_OK);
             }
         }
+
         if (requestCode == utils.ADD_COURSE_REQUEST_CODE) {
             if (resultCode == Activity.RESULT_OK) {
                 // Add course to view
@@ -135,15 +121,13 @@ public class TermView extends AppCompatActivity implements Dialog.DialogListener
                 rvAdapter.notifyItemInserted(COURSES_IN_UI.size() -1);
 
                 // Add course to database
-                Repository db = new Repository(getApplication());
+
                 Course newCourse = new Course(TERM_ID, courseTitle, courseStart, courseEnd, courseStatus);
                 db.insertCourse(newCourse);
             }
         }
         if (requestCode == utils.TERM_VIEW_RETURN) {
             if (resultCode == Activity.RESULT_CANCELED) {
-                updateTermView();
-                Repository db = new Repository(getApplication());
                 COURSES_IN_UI.clear();
                 COURSES_IN_UI.addAll(db.getCoursesInTerm(TERM_ID));
                 RecyclerView rvCoursesInTerm = (RecyclerView) findViewById(R.id.rvCourses);
@@ -163,6 +147,13 @@ public class TermView extends AppCompatActivity implements Dialog.DialogListener
         return true;
     }
 
+    // Do this when deleting term
+    @Override
+    public void onYesClicked() {
+        db.deleteTermById(TERM_ID);
+        finish();
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId() == R.id.editTerm) {
@@ -175,8 +166,6 @@ public class TermView extends AppCompatActivity implements Dialog.DialogListener
             startActivityForResult(termEditor, utils.EDIT_TERM_REQUEST_CODE);
         }
         else if(item.getItemId() == R.id.deleteTerm) {
-            Repository db = new Repository(getApplication());
-
             // Make sure that there are not courses associated with the term.
             if (db.getCoursesInTerm(TERM_ID).size() > 0) {
                 Dialog error = new Dialog("Error", "This term cannot be deleted because there are courses in the term.", "info");
@@ -196,16 +185,4 @@ public class TermView extends AppCompatActivity implements Dialog.DialogListener
         startActivityForResult(courseEditor, utils.ADD_COURSE_REQUEST_CODE);
     }
 
-    @Override
-    public void onYesClicked() {
-        Repository db = new Repository(getApplication());
-        Term toDelete = new Term(TERM_TITLE, TERM_START, TERM_END);
-        toDelete.setTermId(TERM_ID);
-        db.deleteTerm(toDelete);
-        setResult(Activity.RESULT_OK);
-        finish();
-
-        TermsList.TERMS_IN_UI.clear();
-        TermsList.TERMS_IN_UI.addAll(db.getAllTerms());
-    }
 }

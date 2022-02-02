@@ -28,6 +28,8 @@ public interface TermDAO {
     @Query("UPDATE TERMS " + "SET termTitle = :termTitle, startDate = :termStart, endDate = :termEnd " + "WHERE termId = :termID" )
     void updateTermDetailsById(int termID, String termTitle, String termStart, String termEnd);
 
+    @Query("DELETE FROM TERMS WHERE termId=:id")
+    void deleteById(int id);
     // TODO: remove this if never used
     @Query("SELECT * FROM TERMS WHERE termId = :termID")
     Term getTermById(int termID);

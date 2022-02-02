@@ -1,4 +1,4 @@
-package com.example.svenfulenchek_wguscheduler.ui.UI;
+package com.example.svenfulenchek_wguscheduler.ui.UI.Courses;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
@@ -15,6 +15,8 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.svenfulenchek_wguscheduler.R;
+import com.example.svenfulenchek_wguscheduler.ui.UI.DatePickerFragment;
+
 /*
 This class can be used to add or edit courses.
 To add an existing course, use Intent.putExtra("EDIT", true); and pass existing course data using extras:

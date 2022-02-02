@@ -1,4 +1,4 @@
-package com.example.svenfulenchek_wguscheduler.ui.UI;
+package com.example.svenfulenchek_wguscheduler.ui.UI.Terms;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,15 +12,17 @@ import android.view.View;
 
 import com.example.svenfulenchek_wguscheduler.R;
 import com.example.svenfulenchek_wguscheduler.ui.UI.Adapters.TermsAdapter;
+import com.example.svenfulenchek_wguscheduler.ui.UI.MainActivity;
 import com.example.svenfulenchek_wguscheduler.ui.utils;
 import com.example.svenfulenchek_wguscheduler.ui.Database.Repository;
 import com.example.svenfulenchek_wguscheduler.ui.Entity.Term;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutorService;
 
 public class TermsList extends AppCompatActivity{
+
+    Repository db;
 
     public static ArrayList<Term> TERMS_IN_UI = new ArrayList<Term>();
 
@@ -30,7 +32,8 @@ public class TermsList extends AppCompatActivity{
         setContentView(R.layout.activity_terms_list);
 
         // Get data from the repository if there is any
-        Repository db = new Repository(getApplication());
+        db = MainActivity.db;
+
         List<Term> termsInDatabase = db.getAllTerms();
         if(termsInDatabase != null && termsInDatabase.size() > 0) {
             TERMS_IN_UI.clear();
@@ -72,21 +75,19 @@ public class TermsList extends AppCompatActivity{
                 rvAdapter.notifyItemInserted(TERMS_IN_UI.size() -1);
 
                 // Add term to database
-                Repository db = new Repository(getApplication());
+
                 Term newTerm = new Term(termTitle, termStart, termEnd);
                 db.insertTerm(newTerm);
 
             }
         }
         if (requestCode == utils.TERM_LIST_RETURN){
-            if (resultCode == Activity.RESULT_OK){
-                RecyclerView rvTerms = (RecyclerView) findViewById(R.id.rvTerms);
-                RecyclerView.Adapter adapter = rvTerms.getAdapter();
-                TERMS_IN_UI.clear();
-                Repository db = new Repository(getApplication());
-                TERMS_IN_UI.addAll(db.getAllTerms());
-                adapter.notifyDataSetChanged();
-            }
+            TERMS_IN_UI.clear();
+            RecyclerView rvTerms = (RecyclerView) findViewById(R.id.rvTerms);
+            RecyclerView.Adapter adapter = rvTerms.getAdapter();
+            adapter.notifyDataSetChanged();
+            TERMS_IN_UI.addAll(db.getAllTerms());
+            adapter.notifyDataSetChanged();
         }
     }
 

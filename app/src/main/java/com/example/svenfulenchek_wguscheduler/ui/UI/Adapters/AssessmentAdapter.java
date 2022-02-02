@@ -9,15 +9,11 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.svenfulenchek_wguscheduler.R;
 import com.example.svenfulenchek_wguscheduler.ui.Entity.Assessment;
-import com.example.svenfulenchek_wguscheduler.ui.Entity.Course;
-import com.example.svenfulenchek_wguscheduler.ui.UI.AssessmentView;
-import com.example.svenfulenchek_wguscheduler.ui.UI.CourseEditor;
-import com.example.svenfulenchek_wguscheduler.ui.UI.CourseView;
+import com.example.svenfulenchek_wguscheduler.ui.UI.Assessments.AssessmentView;
 import com.example.svenfulenchek_wguscheduler.ui.utils;
 
 import java.util.List;

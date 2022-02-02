@@ -1,4 +1,4 @@
-package com.example.svenfulenchek_wguscheduler.ui.UI;
+package com.example.svenfulenchek_wguscheduler.ui.UI.Terms;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.svenfulenchek_wguscheduler.R;
+import com.example.svenfulenchek_wguscheduler.ui.UI.DatePickerFragment;
 
 /*
 This class can be used to add or edit terms.
@@ -27,6 +28,10 @@ public class TermEditor extends AppCompatActivity implements DatePickerDialog.On
 
     // True if setting start date, false if setting end date.
     boolean startDate;
+
+    String termTitle;
+    String termStart;
+    String termEnd;
 
     // True if editing an existing term
     boolean editMode = false;
@@ -49,15 +54,13 @@ public class TermEditor extends AppCompatActivity implements DatePickerDialog.On
         // Populate form with existing data
         if (editMode) {
             termID = existingTermData.getIntExtra("TERM_ID", 0);
-            String termTitle = existingTermData.getStringExtra("TERM_TITLE");
-            String termStart = existingTermData.getStringExtra("TERM_START");
-            String termEnd = existingTermData.getStringExtra("TERM_END");
+            termTitle = existingTermData.getStringExtra("TERM_TITLE");
+            termStart = existingTermData.getStringExtra("TERM_START");
+            termEnd = existingTermData.getStringExtra("TERM_END");
 
-            //TODO: GARBAGE
-            //if (!termTitle.isEmpty()) { termTitleField.setText(termTitle); }
-            //if (!termStart.isEmpty()) { startDateField.setText(termStart); }
-            //if (!termEnd.isEmpty()) { endDateField.setText(termEnd); }
-
+            termTitleField.setText(termTitle);
+            startDateField.setText(termStart);
+            endDateField.setText(termEnd);
         }
 
         // Open a date picker when the start/end date fields are clicked
