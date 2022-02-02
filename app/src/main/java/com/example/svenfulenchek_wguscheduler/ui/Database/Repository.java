@@ -175,4 +175,15 @@ public class Repository {
         return assessmentsInCourse;
     }
 
+    public void updateCourseDetailsById(int COURSE_ID, String COURSE_TITLE, String COURSE_STATUS, String COURSE_START, String COURSE_END){
+        databaseExecutor.execute(() -> {
+            mCourseDAO.updateById(COURSE_ID, COURSE_TITLE, COURSE_STATUS, COURSE_START, COURSE_END);
+        });
+        try {
+            Thread.sleep(1000);
+        }
+        catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 }

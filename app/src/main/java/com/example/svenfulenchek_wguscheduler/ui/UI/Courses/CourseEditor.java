@@ -62,7 +62,6 @@ public class CourseEditor extends AppCompatActivity implements DatePickerDialog.
             String courseTitle = existingCourseData.getStringExtra("COURSE_TITLE");
             String courseStart = existingCourseData.getStringExtra("COURSE_START");
             String courseEnd = existingCourseData.getStringExtra("COURSE_END");
-            // TODO: GARBAGE String courseStatus = existingCourseData.getStringExtra("COURSE_STATUS");
 
             courseTitleField.setText(courseTitle);
             courseStartField.setText(courseStart);

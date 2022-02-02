@@ -68,7 +68,6 @@ public class TermView extends AppCompatActivity implements Dialog.DialogListener
         TERM_ID = existingTermData.getIntExtra("TERM_ID", 0);
 
         // Get courses in term
-
         COURSES_IN_UI.clear();
         COURSES_IN_UI.addAll(db.getCoursesInTerm(TERM_ID));
 
@@ -108,32 +107,30 @@ public class TermView extends AppCompatActivity implements Dialog.DialogListener
 
         if (requestCode == utils.ADD_COURSE_REQUEST_CODE) {
             if (resultCode == Activity.RESULT_OK) {
-                // Add course to view
+                // Create a Course object to use
                 String courseTitle = data.getStringExtra("COURSE_TITLE");
                 String courseStart = data.getStringExtra("COURSE_START");
                 String courseEnd = data.getStringExtra("COURSE_END");
                 String courseStatus = data.getStringExtra("COURSE_STATUS");
-                COURSES_IN_UI.add(new Course(TERM_ID, courseTitle, courseStart, courseEnd, courseStatus));
-
-                // Refresh view
-                RecyclerView rvCourses = (RecyclerView) findViewById(R.id.rvCourses);
-                RecyclerView.Adapter rvAdapter = rvCourses.getAdapter();
-                rvAdapter.notifyItemInserted(COURSES_IN_UI.size() -1);
+                Course newCourse = new Course(TERM_ID, courseTitle, courseStart, courseEnd, courseStatus);
 
                 // Add course to database
-
-                Course newCourse = new Course(TERM_ID, courseTitle, courseStart, courseEnd, courseStatus);
                 db.insertCourse(newCourse);
+
+                // Refresh view
+                COURSES_IN_UI.clear();
+                COURSES_IN_UI.addAll(db.getCoursesInTerm(TERM_ID));
+                RecyclerView rvCourses = (RecyclerView) findViewById(R.id.rvCourses);
+                RecyclerView.Adapter rvAdapter = rvCourses.getAdapter();
+                rvAdapter.notifyDataSetChanged();
             }
         }
         if (requestCode == utils.TERM_VIEW_RETURN) {
-            if (resultCode == Activity.RESULT_CANCELED) {
-                COURSES_IN_UI.clear();
-                COURSES_IN_UI.addAll(db.getCoursesInTerm(TERM_ID));
-                RecyclerView rvCoursesInTerm = (RecyclerView) findViewById(R.id.rvCourses);
-                CourseAdapter adapter = (CourseAdapter) rvCoursesInTerm.getAdapter();
-                adapter.notifyDataSetChanged();
-            }
+            COURSES_IN_UI.clear();
+            COURSES_IN_UI.addAll(db.getCoursesInTerm(TERM_ID));
+            RecyclerView rvCoursesInTerm = (RecyclerView) findViewById(R.id.rvCourses);
+            CourseAdapter adapter = (CourseAdapter) rvCoursesInTerm.getAdapter();
+            adapter.notifyDataSetChanged();
         }
 
     }
