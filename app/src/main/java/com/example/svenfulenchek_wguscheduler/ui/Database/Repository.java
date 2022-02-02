@@ -139,6 +139,28 @@ public class Repository {
         }
     }
 
+    public void deleteAssessmentById(int id) {
+        databaseExecutor.execute(() -> {
+            mAssessmentDAO.deleteById(id);
+        });
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateAssessmentDetailsById(int assessmentID, String assessmentTitle, String assessmentStart, String assessmentEnd) {
+        databaseExecutor.execute(() -> {
+            mAssessmentDAO.updateAssessmentDetailsById(assessmentID, assessmentTitle, assessmentStart, assessmentEnd);
+        });
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
     public List<Assessment> getAssessmentsInCourse(int courseId){
         databaseExecutor.execute(() -> {
             assessmentsInCourse = mAssessmentDAO.getAssessmentsByCourseId(courseId);

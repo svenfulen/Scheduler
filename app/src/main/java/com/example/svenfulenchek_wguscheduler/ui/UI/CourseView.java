@@ -144,6 +144,17 @@ public class CourseView extends AppCompatActivity {
             }
         }
 
+        if (requestCode == utils.COURSE_VIEW_RETURN) {
+            if (resultCode == Activity.RESULT_OK) {
+                Repository db = new Repository(getApplication());
+                ASSESSMENTS_IN_UI.clear();
+                ASSESSMENTS_IN_UI.addAll(db.getAssessmentsInCourse(COURSE_ID));
+                RecyclerView rvAssessments = (RecyclerView) findViewById(R.id.rvAssessments);
+                AssessmentAdapter adapter = (AssessmentAdapter)rvAssessments.getAdapter();
+                adapter.notifyDataSetChanged();
+            }
+        }
+
     }
 
 

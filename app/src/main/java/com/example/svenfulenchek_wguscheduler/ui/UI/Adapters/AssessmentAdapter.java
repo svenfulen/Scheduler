@@ -1,5 +1,6 @@
 package com.example.svenfulenchek_wguscheduler.ui.UI.Adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -14,7 +15,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.svenfulenchek_wguscheduler.R;
 import com.example.svenfulenchek_wguscheduler.ui.Entity.Assessment;
 import com.example.svenfulenchek_wguscheduler.ui.Entity.Course;
+import com.example.svenfulenchek_wguscheduler.ui.UI.AssessmentView;
+import com.example.svenfulenchek_wguscheduler.ui.UI.CourseEditor;
 import com.example.svenfulenchek_wguscheduler.ui.UI.CourseView;
+import com.example.svenfulenchek_wguscheduler.ui.utils;
 
 import java.util.List;
 
@@ -74,7 +78,14 @@ public class AssessmentAdapter extends RecyclerView.Adapter<AssessmentAdapter.Vi
         holder.viewAssessmentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent assessmentView = new Intent(view.getContext(), AssessmentView.class);
+                assessmentView.putExtra("ASSESSMENT_TITLE", assessment.getTitle());
+                assessmentView.putExtra("ASSESSMENT_TYPE", assessment.getType());
+                assessmentView.putExtra("ASSESSMENT_START", assessment.getStartDate());
+                assessmentView.putExtra("ASSESSMENT_END", assessment.getEndDate());
+                assessmentView.putExtra("ASSESSMENT_ID", assessment.getId());
+                assessmentView.putExtra("COURSE_ID", assessment.getCourseId());
+                ((Activity)view.getContext()).startActivityForResult(assessmentView, utils.COURSE_VIEW_RETURN);
             }
         });
 

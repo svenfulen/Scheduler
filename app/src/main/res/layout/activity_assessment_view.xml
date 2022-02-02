@@ -6,4 +6,46 @@
     android:layout_height="match_parent"
     tools:context=".ui.UI.AssessmentView">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_assessment_view"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_weight="1"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:textAlignment="viewStart"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:subtitleTextColor="#CACACA"
+        app:titleTextColor="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/assessmentTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="assessmentTitle"
+        android:textSize="24sp"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_assessment_view"
+        tools:layout_editor_absoluteX="117dp" />
+
+    <TextView
+        android:id="@+id/assessmentType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:text="assessmentType"
+        app:layout_constraintTop_toBottomOf="@+id/assessmentTitle"
+        tools:layout_editor_absoluteX="152dp" />
+
+    <TextView
+        android:id="@+id/assessmentDates"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="assessmentDates"
+        app:layout_constraintTop_toBottomOf="@+id/assessmentType"
+        tools:layout_editor_absoluteX="149dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
