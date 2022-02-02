@@ -85,7 +85,6 @@ public class AssessmentAdapter extends RecyclerView.Adapter<AssessmentAdapter.Vi
             }
         });
 
-
     }
 
     @Override

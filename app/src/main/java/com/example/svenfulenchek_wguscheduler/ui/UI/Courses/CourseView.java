@@ -16,6 +16,7 @@ import android.view.View;
 
 import com.example.svenfulenchek_wguscheduler.R;
 import com.example.svenfulenchek_wguscheduler.ui.Database.Repository;
+import com.example.svenfulenchek_wguscheduler.ui.Dialog;
 import com.example.svenfulenchek_wguscheduler.ui.Entity.Assessment;
 import com.example.svenfulenchek_wguscheduler.ui.UI.Adapters.AssessmentAdapter;
 import com.example.svenfulenchek_wguscheduler.ui.UI.Assessments.AssessmentEditor;
@@ -116,9 +117,15 @@ public class CourseView extends AppCompatActivity {
             startActivityForResult(courseEditor, utils.EDIT_COURSE_REQUEST_CODE);
         }
         else if(item.getItemId() == R.id.deleteCourse){
-            db.deleteCourseById(COURSE_ID);
-            setResult(Activity.RESULT_CANCELED);
-            finish();
+            if(db.getAssessmentsInCourse(COURSE_ID).size() > 0){
+                Dialog error = new Dialog("Error", "This course cannot be deleted because there are assessments in the course.", "info");
+                error.show(getSupportFragmentManager(), "Error Dialog");
+            }
+            else {
+                db.deleteCourseById(COURSE_ID);
+                setResult(Activity.RESULT_CANCELED);
+                finish();
+            }
         }
         return true;
     }
@@ -129,33 +136,37 @@ public class CourseView extends AppCompatActivity {
 
         if (requestCode == utils.ADD_ASSESSMENT_REQUEST_CODE) {
             if (resultCode == Activity.RESULT_OK) {
-                // Add assessment to view
+                // Get assessment info
                 String assessmentTitle = data.getStringExtra("ASSESSMENT_TITLE");
                 String assessmentStart = data.getStringExtra("ASSESSMENT_START");
                 String assessmentEnd = data.getStringExtra("ASSESSMENT_END");
                 String assessmentType = data.getStringExtra("ASSESSMENT_TYPE");
+
+                // Add assessment to database
                 Assessment newAssessment = new Assessment(COURSE_ID, assessmentType,assessmentStart,assessmentEnd, assessmentTitle);
-                ASSESSMENTS_IN_UI.add(newAssessment);
+                db.insertAssessment(newAssessment);
 
                 // Refresh view
+                ASSESSMENTS_IN_UI.clear();
+                ASSESSMENTS_IN_UI.addAll(db.getAssessmentsInCourse(COURSE_ID));
                 RecyclerView rvAssessments = (RecyclerView) findViewById(R.id.rvAssessments);
                 RecyclerView.Adapter rvAdapter = rvAssessments.getAdapter();
                 rvAdapter.notifyDataSetChanged();
 
-                // Add assessment to database
-                db.insertAssessment(newAssessment);
             }
         }
 
         // Called after the user finishes editing the course
         if (requestCode == utils.EDIT_COURSE_REQUEST_CODE){
-            COURSE_TITLE = data.getStringExtra("COURSE_TITLE");
-            COURSE_START = data.getStringExtra("COURSE_START");
-            COURSE_END = data.getStringExtra("COURSE_END");
-            COURSE_STATUS = data.getStringExtra("COURSE_STATUS");
+            if (resultCode == Activity.RESULT_OK) {
+                COURSE_TITLE = data.getStringExtra("COURSE_TITLE");
+                COURSE_START = data.getStringExtra("COURSE_START");
+                COURSE_END = data.getStringExtra("COURSE_END");
+                COURSE_STATUS = data.getStringExtra("COURSE_STATUS");
 
-            db.updateCourseDetailsById(COURSE_ID, COURSE_TITLE, COURSE_STATUS, COURSE_START, COURSE_END);
-            updateCourseView();
+                db.updateCourseDetailsById(COURSE_ID, COURSE_TITLE, COURSE_STATUS, COURSE_START, COURSE_END);
+                updateCourseView();
+            }
         }
 
         // Called when the Assessment view finishes

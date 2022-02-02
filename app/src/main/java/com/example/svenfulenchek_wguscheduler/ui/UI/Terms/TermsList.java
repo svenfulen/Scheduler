@@ -63,31 +63,31 @@ public class TermsList extends AppCompatActivity{
 
         if (requestCode == utils.ADD_TERM_REQUEST_CODE) {
             if (resultCode == Activity.RESULT_OK) {
-                // Add term to view
+                // Get information about term
                 String termTitle = data.getStringExtra("TERM_TITLE");
                 String termStart = data.getStringExtra("TERM_START");
                 String termEnd = data.getStringExtra("TERM_END");
-                TERMS_IN_UI.add(new Term(termTitle, termStart, termEnd));
-
-                // Refresh view
-                RecyclerView rvTerms = (RecyclerView) findViewById(R.id.rvTerms);
-                RecyclerView.Adapter<TermsAdapter.ViewHolder> rvAdapter = rvTerms.getAdapter();
-                rvAdapter.notifyItemInserted(TERMS_IN_UI.size() -1);
-
                 // Add term to database
-
                 Term newTerm = new Term(termTitle, termStart, termEnd);
                 db.insertTerm(newTerm);
+
+                // Refresh view
+                TERMS_IN_UI.clear();
+                TERMS_IN_UI.addAll(db.getAllTerms());
+                RecyclerView rvTerms = (RecyclerView) findViewById(R.id.rvTerms);
+                RecyclerView.Adapter<TermsAdapter.ViewHolder> rvAdapter = rvTerms.getAdapter();
+                rvAdapter.notifyDataSetChanged();
 
             }
         }
         if (requestCode == utils.TERM_LIST_RETURN){
-            TERMS_IN_UI.clear();
-            RecyclerView rvTerms = (RecyclerView) findViewById(R.id.rvTerms);
-            RecyclerView.Adapter adapter = rvTerms.getAdapter();
-            adapter.notifyDataSetChanged();
-            TERMS_IN_UI.addAll(db.getAllTerms());
-            adapter.notifyDataSetChanged();
+            if (resultCode == Activity.RESULT_OK) {
+                TERMS_IN_UI.clear();
+                TERMS_IN_UI.addAll(db.getAllTerms());
+                RecyclerView rvTerms = (RecyclerView) findViewById(R.id.rvTerms);
+                RecyclerView.Adapter adapter = rvTerms.getAdapter();
+                adapter.notifyDataSetChanged();
+            }
         }
     }
 

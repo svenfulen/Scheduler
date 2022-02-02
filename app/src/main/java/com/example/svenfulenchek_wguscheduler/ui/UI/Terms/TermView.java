@@ -91,17 +91,13 @@ public class TermView extends AppCompatActivity implements Dialog.DialogListener
 
         if (requestCode == utils.EDIT_TERM_REQUEST_CODE) {
             if (resultCode == Activity.RESULT_OK) {
-                String newTermTitle = data.getStringExtra("TERM_TITLE");
-                String newTermStart = data.getStringExtra("TERM_START");
-                String newTermEnd = data.getStringExtra("TERM_END");
-
-                TERM_TITLE = newTermTitle;
-                TERM_START = newTermStart;
-                TERM_END = newTermEnd;
+                TERM_TITLE = data.getStringExtra("TERM_TITLE");
+                TERM_START = data.getStringExtra("TERM_START");
+                TERM_END = data.getStringExtra("TERM_END");
                 dateRange = TERM_START + " - " + TERM_END;
-
                 updateTermView();
                 db.updateTermDetailsById(TERM_ID, TERM_TITLE, TERM_START, TERM_END);
+                setResult(Activity.RESULT_OK);
             }
         }
 

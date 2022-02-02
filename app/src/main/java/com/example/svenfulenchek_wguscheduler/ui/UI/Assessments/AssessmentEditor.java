@@ -125,20 +125,16 @@ public class AssessmentEditor extends AppCompatActivity implements DatePickerDia
         // Make sure the user has entered in all details
         if (!assessment_title.isEmpty() && !assessment_end.equals("End Date") && !assessment_start.equals("Start Date")) {
             // Return new assessment data
-            try {
-                Intent extras = new Intent();
-                extras.putExtra("ASSESSMENT_TITLE", assessment_title);
-                extras.putExtra("ASSESSMENT_START", assessment_start);
-                extras.putExtra("ASSESSMENT_END", assessment_end);
-                extras.putExtra("ASSESSMENT_TYPE", assessment_type);
-                if(editMode){ extras.putExtra("COURSE_ID", courseID); extras.putExtra("ASSESSMENT_ID", assessmentID); }
-                setResult(RESULT_OK, extras);
-                finish();
-            } catch (Exception e) {
-                e.printStackTrace();
-                setResult(RESULT_CANCELED);
-                finish();
-            }
+
+            Intent extras = new Intent();
+            extras.putExtra("ASSESSMENT_TITLE", assessment_title);
+            extras.putExtra("ASSESSMENT_START", assessment_start);
+            extras.putExtra("ASSESSMENT_END", assessment_end);
+            extras.putExtra("ASSESSMENT_TYPE", assessment_type);
+            if(editMode){ extras.putExtra("COURSE_ID", courseID); extras.putExtra("ASSESSMENT_ID", assessmentID); }
+            setResult(RESULT_OK, extras);
+            finish();
+
         }
         else {
             Toast.makeText(getApplicationContext(), "Please fill all fields", Toast.LENGTH_SHORT).show();

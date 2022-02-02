@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.example.svenfulenchek_wguscheduler.R;
 import com.example.svenfulenchek_wguscheduler.ui.Database.Repository;
+import com.example.svenfulenchek_wguscheduler.ui.UI.MainActivity;
 import com.example.svenfulenchek_wguscheduler.ui.utils;
 
 /*
@@ -26,6 +27,8 @@ ASSESSMENT_START
 ASSESSMENT_END
  */
 public class AssessmentView extends AppCompatActivity {
+
+    Repository db;
 
     // Data to load into UI
     String ASSESSMENT_TITLE;
@@ -40,6 +43,8 @@ public class AssessmentView extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_assessment_view);
+
+        db = MainActivity.db;
 
         // Load course data from selected course
         Intent existingAssessmentData = getIntent();
@@ -79,19 +84,18 @@ public class AssessmentView extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId() == R.id.editAssessment) {
-            Intent courseEditor = new Intent(AssessmentView.this, AssessmentEditor.class);
-            courseEditor.putExtra("EDIT", true);
-            courseEditor.putExtra("ASSESSMENT_ID", ASSESSMENT_ID);
-            courseEditor.putExtra("COURSE_ID", COURSE_ID);
-            courseEditor.putExtra("ASSESSMENT_TITLE", ASSESSMENT_TITLE);
-            courseEditor.putExtra("ASSESSMENT_START", ASSESSMENT_START);
-            courseEditor.putExtra("ASSESSMENT_END", ASSESSMENT_END);
-            courseEditor.putExtra("ASSESSMENT_TYPE", ASSESSMENT_TYPE);
+            Intent assessmentEditor = new Intent(AssessmentView.this, AssessmentEditor.class);
+            assessmentEditor.putExtra("EDIT", true);
+            assessmentEditor.putExtra("ASSESSMENT_ID", ASSESSMENT_ID);
+            assessmentEditor.putExtra("COURSE_ID", COURSE_ID);
+            assessmentEditor.putExtra("ASSESSMENT_TITLE", ASSESSMENT_TITLE);
+            assessmentEditor.putExtra("ASSESSMENT_START", ASSESSMENT_START);
+            assessmentEditor.putExtra("ASSESSMENT_END", ASSESSMENT_END);
+            assessmentEditor.putExtra("ASSESSMENT_TYPE", ASSESSMENT_TYPE);
 
-            startActivityForResult(courseEditor, utils.EDIT_ASSESSMENT_REQUEST_CODE);
+            startActivityForResult(assessmentEditor, utils.EDIT_ASSESSMENT_REQUEST_CODE);
         }
         else if(item.getItemId() == R.id.deleteAssessment){
-            Repository db = new Repository(getApplication());
             db.deleteAssessmentById(ASSESSMENT_ID);
             setResult(Activity.RESULT_OK);
             finish();
@@ -111,12 +115,11 @@ public class AssessmentView extends AppCompatActivity {
                 ASSESSMENT_START = data.getStringExtra("ASSESSMENT_START");
                 ASSESSMENT_END = data.getStringExtra("ASSESSMENT_END");
 
+                db.updateAssessmentDetailsById(ASSESSMENT_ID, ASSESSMENT_TITLE, ASSESSMENT_START, ASSESSMENT_END);
+
                 dateRange = ASSESSMENT_START + " - " + ASSESSMENT_END;
 
                 // Populate view
-                finish();
-                startActivity(getIntent());
-                /*
                 TextView assessmentTitle = (TextView)findViewById(R.id.assessmentTitle);
                 TextView assessmentType = (TextView)findViewById(R.id.assessmentType);
                 TextView assessmentDateRange = (TextView)findViewById(R.id.assessmentDates);
@@ -125,11 +128,8 @@ public class AssessmentView extends AppCompatActivity {
                 assessmentType.setText(ASSESSMENT_TYPE);
                 assessmentDateRange.setText(dateRange);
 
-                Repository db = new Repository(getApplication());
-                db.updateAssessmentDetailsById(ASSESSMENT_ID, ASSESSMENT_TITLE, ASSESSMENT_START, ASSESSMENT_END);
                 setResult(Activity.RESULT_OK);
 
-                 */
             }
         }
 

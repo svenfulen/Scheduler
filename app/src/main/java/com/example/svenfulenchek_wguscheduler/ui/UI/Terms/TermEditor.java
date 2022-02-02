@@ -115,19 +115,14 @@ public class TermEditor extends AppCompatActivity implements DatePickerDialog.On
         // Make sure the user has entered in a term title, start date, and end date
         if (!term_end.equals("End Date") && !term_start.equals("Start Date") && !term_title.isEmpty()) {
             // Return new term data
-            try {
-                Intent extras = new Intent();
-                extras.putExtra("TERM_TITLE", term_title);
-                extras.putExtra("TERM_START", term_start);
-                extras.putExtra("TERM_END", term_end);
-                if(editMode) { extras.putExtra("TERM_ID", termID); }
-                setResult(RESULT_OK, extras);
-                finish();
-            } catch (Exception e) {
-                e.printStackTrace();
-                setResult(RESULT_CANCELED);
-                finish();
-            }
+            Intent extras = new Intent();
+            extras.putExtra("TERM_TITLE", term_title);
+            extras.putExtra("TERM_START", term_start);
+            extras.putExtra("TERM_END", term_end);
+            if(editMode) { extras.putExtra("TERM_ID", termID); }
+            setResult(RESULT_OK, extras);
+            finish();
+
         }
         else {
             Toast.makeText(getApplicationContext(), "Please fill all fields", Toast.LENGTH_SHORT).show();
