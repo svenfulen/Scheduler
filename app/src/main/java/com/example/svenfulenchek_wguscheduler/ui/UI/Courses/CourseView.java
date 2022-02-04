@@ -21,6 +21,7 @@ import com.example.svenfulenchek_wguscheduler.ui.Entity.Assessment;
 import com.example.svenfulenchek_wguscheduler.ui.UI.Adapters.AssessmentAdapter;
 import com.example.svenfulenchek_wguscheduler.ui.UI.Assessments.AssessmentEditor;
 import com.example.svenfulenchek_wguscheduler.ui.UI.MainActivity;
+import com.example.svenfulenchek_wguscheduler.ui.UI.Notes.NotesView;
 import com.example.svenfulenchek_wguscheduler.ui.utils;
 
 import java.util.ArrayList;
@@ -93,6 +94,12 @@ public class CourseView extends AppCompatActivity {
         Intent assessmentEditor = new Intent(this, AssessmentEditor.class);
         assessmentEditor.putExtra("EDIT", false);
         startActivityForResult(assessmentEditor, utils.ADD_ASSESSMENT_REQUEST_CODE);
+    }
+
+    public void openNotesView(View view){
+        Intent notesView = new Intent(this, NotesView.class);
+        notesView.putExtra("COURSE_ID", COURSE_ID);
+        startActivityForResult(notesView, utils.COURSE_VIEW_RETURN);
     }
 
     @Override

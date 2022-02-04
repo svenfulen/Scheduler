@@ -13,6 +13,8 @@ import com.example.svenfulenchek_wguscheduler.ui.UI.Terms.TermsList;
 
 public class MainActivity extends AppCompatActivity {
 
+    // This repository is shared across all activities
+    // Therefore, if MainActivity never calls onCreate() the app will break.
     public static Repository db;
 
     @Override

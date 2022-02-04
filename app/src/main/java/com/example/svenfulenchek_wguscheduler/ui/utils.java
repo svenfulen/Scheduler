@@ -5,6 +5,7 @@ public class utils {
     public static final int DATABASE_VERSION = 40;
 
     // Request codes for all activities are handled HERE
+    public static final int NOTES_VIEW_RETURN = 6;
     public static final int COURSE_VIEW_RETURN = 7;
     public static final int TERM_LIST_RETURN = 9;
     public static final int TERM_VIEW_RETURN = 8;
@@ -20,6 +21,8 @@ public class utils {
     public static final int ADD_ASSESSMENT_REQUEST_CODE = 30;
     public static final int EDIT_ASSESSMENT_REQUEST_CODE = 31;
     //TODO: REMOVE public static final int DELETE_ASSESSMENT_REQUEST_CODE = 32;
+
+    public static final int ADD_NOTE_REQUEST_CODE = 40;
 
 
 }

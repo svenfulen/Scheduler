@@ -19,6 +19,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:subtitleTextColor="#CACACA"
+        app:title=" "
         app:titleTextColor="#FFFFFF" />
 
     <TextView
@@ -28,8 +29,9 @@
         android:layout_marginTop="24dp"
         android:text="assessmentTitle"
         android:textSize="24sp"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar_assessment_view"
-        tools:layout_editor_absoluteX="117dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_assessment_view" />
 
     <TextView
         android:id="@+id/assessmentType"
@@ -37,8 +39,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
         android:text="assessmentType"
-        app:layout_constraintTop_toBottomOf="@+id/assessmentTitle"
-        tools:layout_editor_absoluteX="152dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/assessmentTitle" />
 
     <TextView
         android:id="@+id/assessmentDates"
@@ -46,6 +49,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:text="assessmentDates"
-        app:layout_constraintTop_toBottomOf="@+id/assessmentType"
-        tools:layout_editor_absoluteX="149dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/assessmentType" />
 </androidx.constraintlayout.widget.ConstraintLayout>

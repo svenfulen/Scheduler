@@ -27,8 +27,17 @@
         <entry key="..\:/Users/desmo/AndroidStudioProjects/SvenFulenchek_WGUScheduler/app/src/main/res/menu/course_view_menu.xml" value="0.3625" />
         <entry key="..\:/Users/desmo/AndroidStudioProjects/SvenFulenchek_WGUScheduler/app/src/main/res/menu/term_view_menu.xml" value="0.3625" />
         <entry key="..\:/Users/desmo/AndroidStudioProjects/SvenFulenchek_WGUScheduler/app/src/main/res/mipmap-anydpi-v26/ic_books.xml" value="0.21875" />
+        <entry key="app/src/main/res/drawable/layout_border.xml" value="0.3125" />
+        <entry key="app/src/main/res/drawable/note_background.xml" value="0.3125" />
         <entry key="app/src/main/res/layout/activity_assessment_view.xml" value="0.5" />
         <entry key="app/src/main/res/layout/activity_course_view.xml" value="0.35625" />
+        <entry key="app/src/main/res/layout/activity_notes_editor.xml" value="0.35625" />
+        <entry key="app/src/main/res/layout/activity_notes_view.xml" value="0.31592689295039167" />
+        <entry key="app/src/main/res/layout/activity_term_view.xml" value="0.35625" />
+        <entry key="app/src/main/res/layout/activity_terms_list.xml" value="0.35625" />
+        <entry key="app/src/main/res/layout/list_item_course.xml" value="0.35625" />
+        <entry key="app/src/main/res/layout/list_item_note.xml" value="0.35625" />
+        <entry key="app/src/main/res/layout/list_item_term.xml" value="0.35625" />
         <entry key="app/src/main/res/menu/assessment_view_menu.xml" value="0.35625" />
         <entry key="app/src/main/res/menu/course_view_menu.xml" value="0.35625" />
         <entry key="app/src/main/res/menu/term_view_menu.xml" value="0.35625" />

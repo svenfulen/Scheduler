@@ -29,6 +29,7 @@ public class Repository {
     private List<Course> coursesInTerm;
 
     private List<Assessment> assessmentsInCourse;
+    private List<Note> notesInCourse;
 
     // Create threads for database operations to run on
     private static int NUMBER_OF_THREADS = 4;
@@ -178,6 +179,43 @@ public class Repository {
     public void updateCourseDetailsById(int COURSE_ID, String COURSE_TITLE, String COURSE_STATUS, String COURSE_START, String COURSE_END){
         databaseExecutor.execute(() -> {
             mCourseDAO.updateById(COURSE_ID, COURSE_TITLE, COURSE_STATUS, COURSE_START, COURSE_END);
+        });
+        try {
+            Thread.sleep(1000);
+        }
+        catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public List<Note> getNotesInCourse(int courseId){
+        databaseExecutor.execute(() -> {
+            notesInCourse = mNoteDAO.getNotesInCourse(courseId);
+        });
+        try {
+            Thread.sleep(1000);
+        }
+        catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return notesInCourse;
+    }
+
+    public void insertNote(Note note){
+        databaseExecutor.execute(() -> {
+            mNoteDAO.insert(note);
+        });
+        try {
+            Thread.sleep(1000);
+        }
+        catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteNoteById(int id){
+        databaseExecutor.execute(() -> {
+            mNoteDAO.deleteById(id);
         });
         try {
             Thread.sleep(1000);

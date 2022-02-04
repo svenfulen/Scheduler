@@ -49,6 +49,7 @@
         android:layout_width="176dp"
         android:layout_height="64dp"
         android:layout_marginTop="8dp"
+        android:onClick="openNotesView"
         android:text="Notes"
         app:layout_constraintEnd_toStartOf="@+id/instructorsButton"
         app:layout_constraintStart_toStartOf="parent"

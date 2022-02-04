@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SvenFulenchek_WGUScheduler">
         <activity
+            android:name=".ui.UI.Notes.NotesEditor"
+            android:exported="false" />
+        <activity
+            android:name=".ui.UI.Notes.NotesView"
+            android:exported="false" />
+        <activity
             android:name=".ui.UI.Assessments.AssessmentEditor"
             android:exported="false" />
         <activity

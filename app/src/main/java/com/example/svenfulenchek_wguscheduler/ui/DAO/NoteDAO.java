@@ -24,4 +24,10 @@ public interface NoteDAO {
 
     @Query("SELECT * FROM NOTES")
     public List<Note> getAllNotes();
+
+    @Query("SELECT * FROM NOTES WHERE courseId=:courseId")
+    public List<Note> getNotesInCourse(int courseId);
+
+    @Query("DELETE FROM NOTES WHERE id=:id")
+    void deleteById(int id);
 }
