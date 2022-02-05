@@ -144,6 +144,7 @@ public class TermView extends AppCompatActivity implements Dialog.DialogListener
     @Override
     public void onYesClicked() {
         db.deleteTermById(TERM_ID);
+        setResult(Activity.RESULT_OK);
         finish();
     }
 

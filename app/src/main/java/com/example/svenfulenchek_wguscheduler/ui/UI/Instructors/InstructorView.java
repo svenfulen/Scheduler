@@ -39,14 +39,10 @@ public class InstructorView extends AppCompatActivity {
         COURSE_ID = getIntent().getIntExtra("COURSE_ID", -1);
         db = MainActivity.db;
 
-        try {
-            if (INSTRUCTORS_IN_UI.size() < 1) {
-                INSTRUCTORS_IN_UI.addAll(db.getInstructorsInCourse(COURSE_ID));
-            }
+        if (INSTRUCTORS_IN_UI.size() < 1) {
+            INSTRUCTORS_IN_UI.addAll(db.getInstructorsInCourse(COURSE_ID));
         }
-        catch (Exception e){
-            e.printStackTrace();
-        }
+
 
         RecyclerView rvInstructors = (RecyclerView) findViewById(R.id.rvInstructors);
         InstructorAdapter adapter = new InstructorAdapter(INSTRUCTORS_IN_UI);
@@ -82,6 +78,7 @@ public class InstructorView extends AppCompatActivity {
             }
         }
         if (requestCode == utils.EDIT_INSTRUCTOR_REQUEST_CODE) {
+            // If an instructor is edited
             if (resultCode == Activity.RESULT_OK) {
                 // Add the course instructor to the database
                 String instructorName = data.getStringExtra("INSTRUCTOR_NAME");
@@ -90,6 +87,14 @@ public class InstructorView extends AppCompatActivity {
                 int instructorId = data.getIntExtra("INSTRUCTOR_EMAIL", -1);
                 db.updateInstructorById(instructorId, instructorName, instructorPhone, instructorEmail);
 
+                // Refresh the view
+                INSTRUCTORS_IN_UI.clear();
+                INSTRUCTORS_IN_UI.addAll(db.getInstructorsInCourse(COURSE_ID));
+                RecyclerView rvInstructors = (RecyclerView) findViewById(R.id.rvInstructors);
+                rvInstructors.getAdapter().notifyDataSetChanged();
+            }
+            // If an instructor is deleted
+            if (resultCode == Activity.RESULT_CANCELED) {
                 // Refresh the view
                 INSTRUCTORS_IN_UI.clear();
                 INSTRUCTORS_IN_UI.addAll(db.getInstructorsInCourse(COURSE_ID));

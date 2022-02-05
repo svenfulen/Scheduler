@@ -64,15 +64,15 @@ public class InstructorEditor extends AppCompatActivity {
 
     public void deleteInstructor(View view) {
         db.deleteInstructorById(INSTRUCTOR_ID);
-        setResult(RESULT_OK);
+        setResult(RESULT_CANCELED);
         finish();
     }
 
     public void onUserFinished(View view) {
         // Retrieve form data
         String INSTRUCTOR_NAME = instructorNameField.getText().toString();
-        String INSTRUCTOR_PHONE = instructorNameField.getText().toString();
-        String INSTRUCTOR_EMAIL = instructorNameField.getText().toString();
+        String INSTRUCTOR_PHONE = instructorPhoneField.getText().toString();
+        String INSTRUCTOR_EMAIL = instructorEmailField.getText().toString();
 
         // Make sure user has entered in data for each field
         if (!INSTRUCTOR_NAME.isEmpty() && !INSTRUCTOR_EMAIL.isEmpty() && !INSTRUCTOR_PHONE.isEmpty()) {

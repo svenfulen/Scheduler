@@ -62,6 +62,8 @@ public class InstructorAdapter extends RecyclerView.Adapter<InstructorAdapter.Vi
 
         // Set views
         holder.instructorName.setText(instructor.getName());
+        holder.instructorPhone.setText(instructor.getPhone());
+        holder.instructorEmail.setText(instructor.getEmail());
 
         holder.editButton.setOnClickListener(new View.OnClickListener(){
             @Override

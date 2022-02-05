@@ -46,6 +46,7 @@ public class Repository {
         mCourseDAO = db.courseDAO();
         mAssessmentDAO = db.assessmentDAO();
         mNoteDAO = db.noteDAO();
+        mInstructorDAO = db.InstructorDAO();
     }
 
     public void insertTerm(Term term){
