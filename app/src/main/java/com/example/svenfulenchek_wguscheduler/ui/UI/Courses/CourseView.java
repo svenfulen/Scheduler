@@ -20,6 +20,7 @@ import com.example.svenfulenchek_wguscheduler.ui.Dialog;
 import com.example.svenfulenchek_wguscheduler.ui.Entity.Assessment;
 import com.example.svenfulenchek_wguscheduler.ui.UI.Adapters.AssessmentAdapter;
 import com.example.svenfulenchek_wguscheduler.ui.UI.Assessments.AssessmentEditor;
+import com.example.svenfulenchek_wguscheduler.ui.UI.Instructors.InstructorView;
 import com.example.svenfulenchek_wguscheduler.ui.UI.MainActivity;
 import com.example.svenfulenchek_wguscheduler.ui.UI.Notes.NotesView;
 import com.example.svenfulenchek_wguscheduler.ui.utils;
@@ -100,6 +101,12 @@ public class CourseView extends AppCompatActivity {
         Intent notesView = new Intent(this, NotesView.class);
         notesView.putExtra("COURSE_ID", COURSE_ID);
         startActivityForResult(notesView, utils.COURSE_VIEW_RETURN);
+    }
+
+    public void openInstructorsView(View view){
+        Intent instructorsView = new Intent(this, InstructorView.class);
+        instructorsView.putExtra("COURSE_ID", COURSE_ID);
+        startActivityForResult(instructorsView, utils.COURSE_VIEW_RETURN);
     }
 
     @Override

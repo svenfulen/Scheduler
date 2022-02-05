@@ -39,9 +39,14 @@ public class InstructorView extends AppCompatActivity {
         COURSE_ID = getIntent().getIntExtra("COURSE_ID", -1);
         db = MainActivity.db;
 
-        List<Instructor> instructorsInDatabase = db.getInstructorsInCourse(COURSE_ID);
-        INSTRUCTORS_IN_UI.clear();
-        INSTRUCTORS_IN_UI.addAll(instructorsInDatabase);
+        try {
+            if (INSTRUCTORS_IN_UI.size() < 1) {
+                INSTRUCTORS_IN_UI.addAll(db.getInstructorsInCourse(COURSE_ID));
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
 
         RecyclerView rvInstructors = (RecyclerView) findViewById(R.id.rvInstructors);
         InstructorAdapter adapter = new InstructorAdapter(INSTRUCTORS_IN_UI);

@@ -76,13 +76,22 @@ public class NotesView extends AppCompatActivity {
             }
         }
         if (requestCode == utils.EDIT_NOTE_REQUEST_CODE) {
+            // If the note is edited
             if (resultCode == Activity.RESULT_OK) {
-                // Add the new note to the database
+                // Update the note in the database
                 String noteTitle = data.getStringExtra("NOTE_TITLE");
                 String noteContent = data.getStringExtra("NOTE_CONTENT");
                 int NOTE_ID = data.getIntExtra("NOTE_ID", -1);
                 db.updateNoteById(NOTE_ID, noteTitle, noteContent);
 
+                // Refresh the view
+                NOTES_IN_UI.clear();
+                NOTES_IN_UI.addAll(db.getNotesInCourse(COURSE_ID));
+                RecyclerView rvNotes = (RecyclerView) findViewById(R.id.rvInstructors);
+                rvNotes.getAdapter().notifyDataSetChanged();
+            }
+            // If the note is deleted
+            if (resultCode == Activity.RESULT_CANCELED) {
                 // Refresh the view
                 NOTES_IN_UI.clear();
                 NOTES_IN_UI.addAll(db.getNotesInCourse(COURSE_ID));

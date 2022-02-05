@@ -28,6 +28,7 @@ public class Repository {
     private List<Course> mAllCourses;
     private List<Assessment> mAllAssessments;
     private List<Note> mAllNotes;
+    private List<Instructor> mAllInstructors;
 
     private List<Course> coursesInTerm;
 
@@ -229,9 +230,14 @@ public class Repository {
         }
     }
 
-    public List<Instructor> getInstructorsInCourse(int id){
+    public List<Instructor> getInstructorsInCourse(int courseId){
         databaseExecutor.execute(() -> {
-            instructorsInCourse = mInstructorDAO.getInstructorsInCourse(id);
+            try {
+                instructorsInCourse = mInstructorDAO.getInstructorsInCourse(courseId);
+            }
+            catch(Exception e){
+                e.printStackTrace();
+            }
         });
         try {
             Thread.sleep(1000);

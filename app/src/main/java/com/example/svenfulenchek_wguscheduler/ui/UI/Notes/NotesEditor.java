@@ -59,8 +59,18 @@ public class NotesEditor extends AppCompatActivity {
 
     public void deleteNote(View view){
         db.deleteNoteById(NOTE_ID);
-        setResult(RESULT_OK);
+        setResult(RESULT_CANCELED);
         finish();
+    }
+
+    public void shareNote(View view){
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TITLE, noteTitleEditor.getText().toString());
+        sendIntent.putExtra(Intent.EXTRA_TEXT, noteContentEditor.getText().toString());
+        sendIntent.setType("text/plain");
+        Intent shareIntent = Intent.createChooser(sendIntent, null);
+        startActivity(shareIntent);
     }
 
     public void onUserFinished(View view){
