@@ -41,7 +41,7 @@ public class NotesEditor extends AppCompatActivity {
         // UI elements
         noteTitleEditor = (TextView)findViewById(R.id.noteTitleEditor);
         noteContentEditor = (TextView)findViewById(R.id.noteContentEditor);
-        deleteButton = (ImageButton)findViewById(R.id.deleteButton);
+        deleteButton = (ImageButton)findViewById(R.id.deleteNoteButton);
 
         // Determine if the note is being edited or a new note is being created
         Intent existingNoteData = getIntent();

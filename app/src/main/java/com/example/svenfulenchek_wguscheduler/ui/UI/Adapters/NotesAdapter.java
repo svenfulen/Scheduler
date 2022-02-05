@@ -70,7 +70,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
                 notesEditor.putExtra("NOTE_CONTENT", note.getContent());
                 notesEditor.putExtra("NOTE_ID", note.getId());
                 notesEditor.putExtra("COURSE_ID", note.getCourseId());
-                ((Activity)view.getContext()).startActivityForResult(notesEditor, utils.NOTES_VIEW_RETURN);
+                ((Activity)view.getContext()).startActivityForResult(notesEditor, utils.EDIT_NOTE_REQUEST_CODE);
             }
         });
     }

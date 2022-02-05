@@ -2,9 +2,10 @@ package com.example.svenfulenchek_wguscheduler.ui;
 
 // This class stores constant values and utility functions
 public class utils {
-    public static final int DATABASE_VERSION = 40;
+    public static final int DATABASE_VERSION = 50;
 
     // Request codes for all activities are handled HERE
+    public static final int INSTRUCTORS_VIEW_RETURN = 5;
     public static final int NOTES_VIEW_RETURN = 6;
     public static final int COURSE_VIEW_RETURN = 7;
     public static final int TERM_LIST_RETURN = 9;
@@ -23,6 +24,11 @@ public class utils {
     //TODO: REMOVE public static final int DELETE_ASSESSMENT_REQUEST_CODE = 32;
 
     public static final int ADD_NOTE_REQUEST_CODE = 40;
+    public static final int EDIT_NOTE_REQUEST_CODE = 41;
+
+    public static final int ADD_INSTRUCTOR_REQUEST_CODE = 50;
+    public static final int EDIT_INSTRUCTOR_REQUEST_CODE = 51;
+
 
 
 }

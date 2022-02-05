@@ -28,6 +28,9 @@ public interface NoteDAO {
     @Query("SELECT * FROM NOTES WHERE courseId=:courseId")
     public List<Note> getNotesInCourse(int courseId);
 
+    @Query("UPDATE NOTES " + "SET title = :noteTitle, content = :noteContent " + "WHERE id = :noteId" )
+    void updateById(int noteId, String noteTitle, String noteContent);
+
     @Query("DELETE FROM NOTES WHERE id=:id")
     void deleteById(int id);
 }

@@ -4,10 +4,12 @@ import android.app.Application;
 
 import com.example.svenfulenchek_wguscheduler.ui.DAO.AssessmentDAO;
 import com.example.svenfulenchek_wguscheduler.ui.DAO.CourseDAO;
+import com.example.svenfulenchek_wguscheduler.ui.DAO.InstructorDAO;
 import com.example.svenfulenchek_wguscheduler.ui.DAO.NoteDAO;
 import com.example.svenfulenchek_wguscheduler.ui.DAO.TermDAO;
 import com.example.svenfulenchek_wguscheduler.ui.Entity.Assessment;
 import com.example.svenfulenchek_wguscheduler.ui.Entity.Course;
+import com.example.svenfulenchek_wguscheduler.ui.Entity.Instructor;
 import com.example.svenfulenchek_wguscheduler.ui.Entity.Note;
 import com.example.svenfulenchek_wguscheduler.ui.Entity.Term;
 
@@ -20,6 +22,7 @@ public class Repository {
     private CourseDAO mCourseDAO;
     private AssessmentDAO mAssessmentDAO;
     private NoteDAO mNoteDAO;
+    private InstructorDAO mInstructorDAO;
 
     private List<Term> mAllTerms;
     private List<Course> mAllCourses;
@@ -28,6 +31,7 @@ public class Repository {
 
     private List<Course> coursesInTerm;
 
+    private List<Instructor> instructorsInCourse;
     private List<Assessment> assessmentsInCourse;
     private List<Note> notesInCourse;
 
@@ -224,4 +228,66 @@ public class Repository {
             e.printStackTrace();
         }
     }
+
+    public List<Instructor> getInstructorsInCourse(int id){
+        databaseExecutor.execute(() -> {
+            instructorsInCourse = mInstructorDAO.getInstructorsInCourse(id);
+        });
+        try {
+            Thread.sleep(1000);
+        }
+        catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return instructorsInCourse;
+    }
+
+    public void insertInstructor(Instructor instructor){
+        databaseExecutor.execute(() -> {
+            mInstructorDAO.insert(instructor);
+        });
+        try {
+            Thread.sleep(1000);
+        }
+        catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateInstructorById(int instructorId, String instructorName, String instructorPhone, String instructorEmail){
+        databaseExecutor.execute(() -> {
+            mInstructorDAO.updateById(instructorId, instructorName, instructorPhone, instructorEmail);
+        });
+        try {
+            Thread.sleep(1000);
+        }
+        catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateNoteById(int noteId, String noteTitle, String noteContent){
+        databaseExecutor.execute(() -> {
+            mNoteDAO.updateById(noteId, noteTitle, noteContent);
+        });
+        try {
+            Thread.sleep(1000);
+        }
+        catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteInstructorById(int instructorId){
+        databaseExecutor.execute(() -> {
+            mInstructorDAO.deleteById(instructorId);
+        });
+        try {
+            Thread.sleep(1000);
+        }
+        catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
