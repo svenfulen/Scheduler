@@ -7,12 +7,18 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
+import android.icu.text.SimpleDateFormat;
+import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.svenfulenchek_wguscheduler.R;
 import com.example.svenfulenchek_wguscheduler.ui.Database.Repository;
@@ -23,9 +29,13 @@ import com.example.svenfulenchek_wguscheduler.ui.UI.Assessments.AssessmentEditor
 import com.example.svenfulenchek_wguscheduler.ui.UI.Instructors.InstructorView;
 import com.example.svenfulenchek_wguscheduler.ui.UI.MainActivity;
 import com.example.svenfulenchek_wguscheduler.ui.UI.Notes.NotesView;
+import com.example.svenfulenchek_wguscheduler.ui.UI.appBroadcastReceiver;
 import com.example.svenfulenchek_wguscheduler.ui.utils;
 
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 /*
 Required extras:
@@ -75,9 +85,9 @@ public class CourseView extends AppCompatActivity {
         COURSE_ID = existingCourseData.getIntExtra("COURSE_ID", -1);
 
         // Get Assessments from database if needed
-        if(ASSESSMENTS_IN_UI.size() < 1){
-            ASSESSMENTS_IN_UI.addAll(db.getAssessmentsInCourse(COURSE_ID));
-        }
+        ASSESSMENTS_IN_UI.clear();
+        ASSESSMENTS_IN_UI.addAll(db.getAssessmentsInCourse(COURSE_ID));
+
         updateCourseView();
 
         // Populate RecyclerView
@@ -107,6 +117,38 @@ public class CourseView extends AppCompatActivity {
         Intent instructorsView = new Intent(this, InstructorView.class);
         instructorsView.putExtra("COURSE_ID", COURSE_ID);
         startActivityForResult(instructorsView, utils.COURSE_VIEW_RETURN);
+    }
+
+    // Creates broadcasts for both start and end dates.
+    public void setAlerts(View view) throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.US);
+        AlarmManager alarmManager=(AlarmManager)getSystemService(Context.ALARM_SERVICE);
+
+        int startBroadcastRequestCode = (1100000 + COURSE_ID);
+        int endBroadcastRequestCode = (1200000 + COURSE_ID);
+
+        // TODO: edit this, it sets notification to be at 5:17 pm
+        long startDateMillis = sdf.parse(COURSE_START).getTime() + 62880000;
+        long endDateMillis = sdf.parse(COURSE_START).getTime() + 62880000;
+
+        // This intent is used to send information to the broadcast receiver
+        Intent startNotificationIntent = new Intent(CourseView.this, appBroadcastReceiver.class);
+        Intent endNotificationIntent = new Intent(CourseView.this, appBroadcastReceiver.class);
+
+        // Create a pending intent that will send the broadcast later
+        PendingIntent startBroadcast = PendingIntent.getBroadcast(CourseView.this, startBroadcastRequestCode ,startNotificationIntent,PendingIntent.FLAG_IMMUTABLE);
+        PendingIntent endBroadcast = PendingIntent.getBroadcast(CourseView.this, endBroadcastRequestCode, startNotificationIntent,PendingIntent.FLAG_IMMUTABLE);
+
+        // Put data in the intents
+        startNotificationIntent.putExtra("notificationText",COURSE_TITLE);
+        startNotificationIntent.putExtra("notificationTitle","Course Start");
+        alarmManager.set(AlarmManager.RTC_WAKEUP, startDateMillis, startBroadcast);
+
+        endNotificationIntent.putExtra("notificationText",COURSE_TITLE);
+        endNotificationIntent.putExtra("notificationTitle","Course End");
+        alarmManager.set(AlarmManager.RTC_WAKEUP, endDateMillis, endBroadcast);
+
+        Toast.makeText(view.getContext(),"Alerts have been turned on.",Toast.LENGTH_LONG).show();
     }
 
     @Override

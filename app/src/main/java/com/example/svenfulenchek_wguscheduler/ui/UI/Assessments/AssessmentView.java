@@ -103,6 +103,15 @@ public class AssessmentView extends AppCompatActivity {
         return true;
     }
 
+    public void setAlerts(boolean active){
+        if(active) {
+            // Turn on alerts for assessment in view
+        }
+        else {
+            // Turn off alerts for assessment in view
+        }
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

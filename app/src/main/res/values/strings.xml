@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Sven Fulenchek_WGU Scheduler</string>
     <string name="terms_header">TERMS</string>
+    <string name="channel_name">wgu_scheduler</string>
+    <string name="channel_description">wgu_scheduler</string>
 
     <string-array name="course_status">
         <item>In Progress</item>
