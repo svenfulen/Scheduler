@@ -1,4 +1,4 @@
-package com.example.svenfulenchek_wguscheduler.ui.UI;
+package com.example.svenfulenchek_wguscheduler.ui.AcademicProgress;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;

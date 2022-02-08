@@ -5,7 +5,7 @@
     android:id="@+id/instructor_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.UI.Instructors.InstructorView">
+    tools:context=".ui.AcademicProgress.Instructors.InstructorView">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_instructor_view"

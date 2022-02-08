@@ -19,7 +19,7 @@ import com.example.svenfulenchek_wguscheduler.ui.Entity.Note;
 import com.example.svenfulenchek_wguscheduler.ui.utils;
 
 @Database(entities={Term.class, Course.class, Assessment.class, Note.class, Instructor.class}, version= utils.DATABASE_VERSION, exportSchema = false)
-public abstract class TermDatabaseBuilder extends RoomDatabase {
+public abstract class DatabaseBuilder extends RoomDatabase {
     // Data access objects
     public abstract TermDAO termDAO();
     public abstract CourseDAO courseDAO();
@@ -28,14 +28,14 @@ public abstract class TermDatabaseBuilder extends RoomDatabase {
     public abstract InstructorDAO InstructorDAO();
 
     // Database instance
-    private static volatile TermDatabaseBuilder INSTANCE;
+    private static volatile DatabaseBuilder INSTANCE;
 
     // If there is no database built, build a new one.  Else, return the current database
-    static TermDatabaseBuilder getDatabase(final Context context){
+    static DatabaseBuilder getDatabase(final Context context){
         if (INSTANCE == null) {
-            synchronized (TermDatabaseBuilder.class) {
+            synchronized (DatabaseBuilder.class) {
                 if (INSTANCE == null) {
-                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(), TermDatabaseBuilder.class, "TermDatabase.db")
+                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(), DatabaseBuilder.class, "TermDatabase.db")
                             .fallbackToDestructiveMigration()
                             .build();
                 }

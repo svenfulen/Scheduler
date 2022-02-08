@@ -1,4 +1,4 @@
-package com.example.svenfulenchek_wguscheduler.ui.UI.Instructors;
+package com.example.svenfulenchek_wguscheduler.ui.AcademicProgress.Instructors;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 import com.example.svenfulenchek_wguscheduler.R;
 import com.example.svenfulenchek_wguscheduler.ui.Database.Repository;
-import com.example.svenfulenchek_wguscheduler.ui.UI.MainActivity;
+import com.example.svenfulenchek_wguscheduler.ui.MainActivity;
 
 /*
 REQUIRED EXTRAS:

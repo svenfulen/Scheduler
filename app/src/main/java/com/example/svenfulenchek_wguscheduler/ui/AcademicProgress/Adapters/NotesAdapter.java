@@ -1,21 +1,19 @@
-package com.example.svenfulenchek_wguscheduler.ui.UI.Adapters;
+package com.example.svenfulenchek_wguscheduler.ui.AcademicProgress.Adapters;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.svenfulenchek_wguscheduler.R;
 import com.example.svenfulenchek_wguscheduler.ui.Entity.Note;
-import com.example.svenfulenchek_wguscheduler.ui.UI.Notes.NotesEditor;
+import com.example.svenfulenchek_wguscheduler.ui.AcademicProgress.Notes.NotesEditor;
 import com.example.svenfulenchek_wguscheduler.ui.utils;
 
 import java.util.List;

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.UI.MainActivity">
+    tools:context=".ui.MainActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_main"
@@ -14,24 +14,20 @@
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="Home"
+        app:titleTextColor="#FFFFFF" />
 
     <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:id="@+id/home_layout"
+        android:layout_width="411dp"
+        android:layout_height="675dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar_main">
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_main"></LinearLayout>
 
-        <Button
-            android:id="@+id/termsButton"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:onClick="openTermsActivity"
-            android:text="View All Terms" />
-
-    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

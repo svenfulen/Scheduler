@@ -1,6 +1,5 @@
-package com.example.svenfulenchek_wguscheduler.ui.UI.Notes;
+package com.example.svenfulenchek_wguscheduler.ui.AcademicProgress.Notes;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,8 +12,8 @@ import android.view.View;
 import com.example.svenfulenchek_wguscheduler.R;
 import com.example.svenfulenchek_wguscheduler.ui.Database.Repository;
 import com.example.svenfulenchek_wguscheduler.ui.Entity.Note;
-import com.example.svenfulenchek_wguscheduler.ui.UI.Adapters.NotesAdapter;
-import com.example.svenfulenchek_wguscheduler.ui.UI.MainActivity;
+import com.example.svenfulenchek_wguscheduler.ui.AcademicProgress.Adapters.NotesAdapter;
+import com.example.svenfulenchek_wguscheduler.ui.MainActivity;
 import com.example.svenfulenchek_wguscheduler.ui.utils;
 
 import java.util.ArrayList;

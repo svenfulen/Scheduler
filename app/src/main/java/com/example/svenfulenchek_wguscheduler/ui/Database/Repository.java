@@ -41,7 +41,7 @@ public class Repository {
     static final ExecutorService databaseExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
     public Repository(Application application){
-        TermDatabaseBuilder db = TermDatabaseBuilder.getDatabase(application);
+        DatabaseBuilder db = DatabaseBuilder.getDatabase(application);
         mTermDAO = db.termDAO();
         mCourseDAO = db.courseDAO();
         mAssessmentDAO = db.assessmentDAO();

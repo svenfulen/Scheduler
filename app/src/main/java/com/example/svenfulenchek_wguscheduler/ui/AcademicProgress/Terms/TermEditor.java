@@ -1,4 +1,4 @@
-package com.example.svenfulenchek_wguscheduler.ui.UI.Terms;
+package com.example.svenfulenchek_wguscheduler.ui.AcademicProgress.Terms;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
@@ -13,7 +13,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.svenfulenchek_wguscheduler.R;
-import com.example.svenfulenchek_wguscheduler.ui.UI.DatePickerFragment;
+import com.example.svenfulenchek_wguscheduler.ui.AcademicProgress.DatePickerFragment;
 
 /*
 This class can be used to add or edit terms.

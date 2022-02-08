@@ -1,4 +1,4 @@
-package com.example.svenfulenchek_wguscheduler.ui.UI.Courses;
+package com.example.svenfulenchek_wguscheduler.ui.AcademicProgress.Courses;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
@@ -15,7 +15,8 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.svenfulenchek_wguscheduler.R;
-import com.example.svenfulenchek_wguscheduler.ui.UI.DatePickerFragment;
+import com.example.svenfulenchek_wguscheduler.ui.AcademicProgress.DatePickerFragment;
+import com.example.svenfulenchek_wguscheduler.ui.utils;
 
 /*
 This class can be used to add or edit courses.
@@ -62,11 +63,13 @@ public class CourseEditor extends AppCompatActivity implements DatePickerDialog.
             String courseTitle = existingCourseData.getStringExtra("COURSE_TITLE");
             String courseStart = existingCourseData.getStringExtra("COURSE_START");
             String courseEnd = existingCourseData.getStringExtra("COURSE_END");
-
+            String courseStatus = existingCourseData.getStringExtra("COURSE_STATUS");
             courseTitleField.setText(courseTitle);
             courseStartField.setText(courseStart);
             courseEndField.setText(courseEnd);
 
+            // Set the spinner value
+            courseStatusSpinner.setSelection(utils.getSpinnerItemIndex(courseStatusSpinner, courseStatus));
         }
 
         // Open a date picker when the start/end date fields are clicked

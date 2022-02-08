@@ -30,14 +30,18 @@
         <entry key="app/src/main/res/drawable-anydpi/ic_action_name.xml" value="0.3125" />
         <entry key="app/src/main/res/drawable/layout_border.xml" value="0.3125" />
         <entry key="app/src/main/res/drawable/note_background.xml" value="0.3125" />
+        <entry key="app/src/main/res/layout/activity_appointment_editor.xml" value="0.35625" />
         <entry key="app/src/main/res/layout/activity_assessment_view.xml" value="0.5" />
         <entry key="app/src/main/res/layout/activity_course_view.xml" value="0.35625" />
         <entry key="app/src/main/res/layout/activity_instructor_editor.xml" value="0.35625" />
         <entry key="app/src/main/res/layout/activity_instructor_view.xml" value="0.35625" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.35625" />
         <entry key="app/src/main/res/layout/activity_notes_editor.xml" value="0.34269662921348315" />
         <entry key="app/src/main/res/layout/activity_notes_view.xml" value="0.31592689295039167" />
+        <entry key="app/src/main/res/layout/activity_scheduler.xml" value="0.35625" />
         <entry key="app/src/main/res/layout/activity_term_view.xml" value="0.35625" />
         <entry key="app/src/main/res/layout/activity_terms_list.xml" value="0.35625" />
+        <entry key="app/src/main/res/layout/list_item_appointment.xml" value="0.35625" />
         <entry key="app/src/main/res/layout/list_item_course.xml" value="0.35625" />
         <entry key="app/src/main/res/layout/list_item_instructor.xml" value="0.35625" />
         <entry key="app/src/main/res/layout/list_item_note.xml" value="0.35625" />

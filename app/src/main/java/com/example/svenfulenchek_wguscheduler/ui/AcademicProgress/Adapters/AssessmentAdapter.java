@@ -1,4 +1,4 @@
-package com.example.svenfulenchek_wguscheduler.ui.UI.Adapters;
+package com.example.svenfulenchek_wguscheduler.ui.AcademicProgress.Adapters;
 
 import android.app.Activity;
 import android.content.Context;
@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.svenfulenchek_wguscheduler.R;
 import com.example.svenfulenchek_wguscheduler.ui.Entity.Assessment;
-import com.example.svenfulenchek_wguscheduler.ui.UI.Assessments.AssessmentView;
+import com.example.svenfulenchek_wguscheduler.ui.AcademicProgress.Assessments.AssessmentView;
 import com.example.svenfulenchek_wguscheduler.ui.utils;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.example.svenfulenchek_wguscheduler.ui.UI.Adapters;
+package com.example.svenfulenchek_wguscheduler.ui.AcademicProgress.Adapters;
 
 import android.app.Activity;
 import android.content.Context;
@@ -9,12 +9,11 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.svenfulenchek_wguscheduler.R;
 import com.example.svenfulenchek_wguscheduler.ui.Entity.Instructor;
-import com.example.svenfulenchek_wguscheduler.ui.UI.Instructors.InstructorEditor;
+import com.example.svenfulenchek_wguscheduler.ui.AcademicProgress.Instructors.InstructorEditor;
 import com.example.svenfulenchek_wguscheduler.ui.utils;
 
 import java.util.List;

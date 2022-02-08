@@ -1,4 +1,4 @@
-package com.example.svenfulenchek_wguscheduler.ui.UI.Courses;
+package com.example.svenfulenchek_wguscheduler.ui.AcademicProgress.Courses;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,7 +12,6 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.icu.text.SimpleDateFormat;
-import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -24,17 +23,17 @@ import com.example.svenfulenchek_wguscheduler.R;
 import com.example.svenfulenchek_wguscheduler.ui.Database.Repository;
 import com.example.svenfulenchek_wguscheduler.ui.Dialog;
 import com.example.svenfulenchek_wguscheduler.ui.Entity.Assessment;
-import com.example.svenfulenchek_wguscheduler.ui.UI.Adapters.AssessmentAdapter;
-import com.example.svenfulenchek_wguscheduler.ui.UI.Assessments.AssessmentEditor;
-import com.example.svenfulenchek_wguscheduler.ui.UI.Instructors.InstructorView;
-import com.example.svenfulenchek_wguscheduler.ui.UI.MainActivity;
-import com.example.svenfulenchek_wguscheduler.ui.UI.Notes.NotesView;
-import com.example.svenfulenchek_wguscheduler.ui.UI.appBroadcastReceiver;
+import com.example.svenfulenchek_wguscheduler.ui.AcademicProgress.Adapters.AssessmentAdapter;
+import com.example.svenfulenchek_wguscheduler.ui.AcademicProgress.Assessments.AssessmentEditor;
+import com.example.svenfulenchek_wguscheduler.ui.AcademicProgress.Instructors.InstructorView;
+import com.example.svenfulenchek_wguscheduler.ui.MainActivity;
+import com.example.svenfulenchek_wguscheduler.ui.AcademicProgress.Notes.NotesView;
+import com.example.svenfulenchek_wguscheduler.ui.AcademicProgress.appBroadcastReceiver;
 import com.example.svenfulenchek_wguscheduler.ui.utils;
 
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.Locale;
 
 /*
@@ -124,31 +123,29 @@ public class CourseView extends AppCompatActivity {
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.US);
         AlarmManager alarmManager=(AlarmManager)getSystemService(Context.ALARM_SERVICE);
 
-        int startBroadcastRequestCode = (1100000 + COURSE_ID);
-        int endBroadcastRequestCode = (1200000 + COURSE_ID);
+        //long startDateMillis = sdf.parse(COURSE_START).getTime();
+        long startDateMillis = Calendar.getInstance().getTimeInMillis();
+        //long endDateMillis = sdf.parse(COURSE_START).getTime();
+        long endDateMillis = Calendar.getInstance().getTimeInMillis();
 
-        // TODO: edit this, it sets notification to be at 5:17 pm
-        long startDateMillis = sdf.parse(COURSE_START).getTime() + 62880000;
-        long endDateMillis = sdf.parse(COURSE_START).getTime() + 62880000;
-
-        // This intent is used to send information to the broadcast receiver
+        // Create intents to send data to the broadcast receiver
         Intent startNotificationIntent = new Intent(CourseView.this, appBroadcastReceiver.class);
+        startNotificationIntent.putExtra("text", COURSE_TITLE);
+        startNotificationIntent.putExtra("title", "Course Start");
+
         Intent endNotificationIntent = new Intent(CourseView.this, appBroadcastReceiver.class);
+        endNotificationIntent.putExtra("text", COURSE_TITLE);
+        endNotificationIntent.putExtra("title", "Course End");
 
         // Create a pending intent that will send the broadcast later
-        PendingIntent startBroadcast = PendingIntent.getBroadcast(CourseView.this, startBroadcastRequestCode ,startNotificationIntent,PendingIntent.FLAG_IMMUTABLE);
-        PendingIntent endBroadcast = PendingIntent.getBroadcast(CourseView.this, endBroadcastRequestCode, startNotificationIntent,PendingIntent.FLAG_IMMUTABLE);
+        PendingIntent startBroadcast = PendingIntent.getBroadcast(CourseView.this, (1140000 + COURSE_ID), startNotificationIntent, PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent endBroadcast = PendingIntent.getBroadcast(CourseView.this, (1150000 + COURSE_ID), endNotificationIntent, PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
 
-        // Put data in the intents
-        startNotificationIntent.putExtra("notificationText",COURSE_TITLE);
-        startNotificationIntent.putExtra("notificationTitle","Course Start");
+        // Tell the alarm manager to send the broadcast on the course start/end dates
         alarmManager.set(AlarmManager.RTC_WAKEUP, startDateMillis, startBroadcast);
-
-        endNotificationIntent.putExtra("notificationText",COURSE_TITLE);
-        endNotificationIntent.putExtra("notificationTitle","Course End");
         alarmManager.set(AlarmManager.RTC_WAKEUP, endDateMillis, endBroadcast);
 
-        Toast.makeText(view.getContext(),"Alerts have been turned on.",Toast.LENGTH_LONG).show();
+        Toast.makeText(view.getContext(),"Alerts have been set for the start and end dates of this course.",Toast.LENGTH_LONG).show();
     }
 
     @Override

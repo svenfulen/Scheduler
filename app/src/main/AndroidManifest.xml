@@ -3,6 +3,7 @@
     package="com.example.svenfulenchek_wguscheduler">
 
     <application
+        android:title="Scheduler"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -10,47 +11,47 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SvenFulenchek_WGUScheduler">
         <receiver
-            android:name=".ui.UI.appBroadcastReceiver"
+            android:name=".ui.AcademicProgress.appBroadcastReceiver"
             android:enabled="true"
-            android:exported="true"></receiver>
+            android:exported="true" />
 
         <activity
-            android:name=".ui.UI.Instructors.InstructorEditor"
+            android:name=".ui.AcademicProgress.Instructors.InstructorEditor"
             android:exported="false" />
         <activity
-            android:name=".ui.UI.Instructors.InstructorView"
+            android:name=".ui.AcademicProgress.Instructors.InstructorView"
             android:exported="false" />
         <activity
-            android:name=".ui.UI.Notes.NotesEditor"
+            android:name=".ui.AcademicProgress.Notes.NotesEditor"
             android:exported="false" />
         <activity
-            android:name=".ui.UI.Notes.NotesView"
+            android:name=".ui.AcademicProgress.Notes.NotesView"
             android:exported="false" />
         <activity
-            android:name=".ui.UI.Assessments.AssessmentEditor"
+            android:name=".ui.AcademicProgress.Assessments.AssessmentEditor"
             android:exported="false" />
         <activity
-            android:name=".ui.UI.Courses.CourseView"
+            android:name=".ui.AcademicProgress.Courses.CourseView"
             android:exported="false" />
         <activity
-            android:name=".ui.UI.Courses.CourseEditor"
+            android:name=".ui.AcademicProgress.Courses.CourseEditor"
             android:exported="false" />
         <activity
-            android:name=".ui.UI.Terms.TermView"
+            android:name=".ui.AcademicProgress.Terms.TermView"
             android:exported="false" />
         <activity
-            android:name=".ui.UI.Terms.TermEditor"
+            android:name=".ui.AcademicProgress.Terms.TermEditor"
             android:exported="false" />
         <activity
-            android:name=".ui.UI.Assessments.AssessmentView"
+            android:name=".ui.AcademicProgress.Assessments.AssessmentView"
             android:exported="false"
-            android:parentActivityName=".ui.UI.MainActivity" />
+            android:parentActivityName=".ui.MainActivity" />
         <activity
-            android:name=".ui.UI.Terms.TermsList"
+            android:name=".ui.AcademicProgress.Terms.TermsList"
             android:exported="false"
-            android:parentActivityName=".ui.UI.MainActivity" />
+            android:parentActivityName=".ui.MainActivity" />
         <activity
-            android:name=".ui.UI.MainActivity"
+            android:name=".ui.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

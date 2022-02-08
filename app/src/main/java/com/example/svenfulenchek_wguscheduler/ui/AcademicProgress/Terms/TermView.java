@@ -1,4 +1,4 @@
-package com.example.svenfulenchek_wguscheduler.ui.UI.Terms;
+package com.example.svenfulenchek_wguscheduler.ui.AcademicProgress.Terms;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -18,10 +18,9 @@ import com.example.svenfulenchek_wguscheduler.R;
 import com.example.svenfulenchek_wguscheduler.ui.Database.Repository;
 import com.example.svenfulenchek_wguscheduler.ui.Dialog;
 import com.example.svenfulenchek_wguscheduler.ui.Entity.Course;
-import com.example.svenfulenchek_wguscheduler.ui.Entity.Term;
-import com.example.svenfulenchek_wguscheduler.ui.UI.Adapters.CourseAdapter;
-import com.example.svenfulenchek_wguscheduler.ui.UI.Courses.CourseEditor;
-import com.example.svenfulenchek_wguscheduler.ui.UI.MainActivity;
+import com.example.svenfulenchek_wguscheduler.ui.AcademicProgress.Adapters.CourseAdapter;
+import com.example.svenfulenchek_wguscheduler.ui.AcademicProgress.Courses.CourseEditor;
+import com.example.svenfulenchek_wguscheduler.ui.MainActivity;
 import com.example.svenfulenchek_wguscheduler.ui.utils;
 
 import java.util.ArrayList;

@@ -5,7 +5,7 @@
     android:id="@+id/notes_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.UI.Notes.NotesView">
+    tools:context=".ui.AcademicProgress.Notes.NotesView">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_instructor_view"

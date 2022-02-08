@@ -1,4 +1,4 @@
-package com.example.svenfulenchek_wguscheduler.ui.UI.Terms;
+package com.example.svenfulenchek_wguscheduler.ui.AcademicProgress.Terms;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,8 +11,8 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.svenfulenchek_wguscheduler.R;
-import com.example.svenfulenchek_wguscheduler.ui.UI.Adapters.TermsAdapter;
-import com.example.svenfulenchek_wguscheduler.ui.UI.MainActivity;
+import com.example.svenfulenchek_wguscheduler.ui.AcademicProgress.Adapters.TermsAdapter;
+import com.example.svenfulenchek_wguscheduler.ui.MainActivity;
 import com.example.svenfulenchek_wguscheduler.ui.utils;
 import com.example.svenfulenchek_wguscheduler.ui.Database.Repository;
 import com.example.svenfulenchek_wguscheduler.ui.Entity.Term;
