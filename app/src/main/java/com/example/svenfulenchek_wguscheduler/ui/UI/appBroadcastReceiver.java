@@ -20,14 +20,14 @@ public class appBroadcastReceiver extends android.content.BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         createNotificationChannel(context,channel_id);
 
-        Notification notification= new NotificationCompat.Builder(context, channel_id)
+        Notification notification = new NotificationCompat.Builder(context, channel_id)
                 .setSmallIcon(R.drawable.ic_launcher_foreground)
-                .setContentText(intent.getStringExtra("notificationText"))
-                .setContentTitle(intent.getStringExtra("notificationTitle"))
+                .setContentText(intent.getStringExtra("text"))
+                .setContentTitle(intent.getStringExtra("title"))
                 .build();
 
         NotificationManager notificationManager=(NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
-        notificationManager.notify(NOTIFICATION_ID++,notification);
+        notificationManager.notify(NOTIFICATION_ID++, notification);
     }
     private void createNotificationChannel(Context context, String CHANNEL_ID) {
         // Create the NotificationChannel, but only on API 26+ because
