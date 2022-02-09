@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.AcademicProgress.Notes.NotesEditor">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_note_editor"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_weight="1"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:textAlignment="viewStart"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:subtitleTextColor="#CACACA"
+        app:title="Note Editor"
+        app:titleTextColor="#FFFFFF" />
+
+    <EditText
+        android:id="@+id/noteTitleEditor"
+        android:layout_width="707dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="Note Title"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_note_editor" />
+
+    <EditText
+        android:id="@+id/noteContentEditor"
+        android:layout_width="710dp"
+        android:layout_height="205dp"
+        android:ems="10"
+        android:gravity="start|top"
+        android:inputType="textMultiLine"
+        app:layout_constraintBottom_toTopOf="@+id/saveNoteButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/noteTitleEditor" />
+
+    <Button
+        android:id="@+id/saveNoteButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:onClick="onUserFinished"
+        android:text="Done"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.499"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageButton
+        android:id="@+id/shareNoteButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:backgroundTint="#00FFFFFF"
+        android:onClick="shareNote"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar_note_editor"
+        app:layout_constraintEnd_toEndOf="@+id/toolbar_note_editor"
+        app:layout_constraintTop_toTopOf="@+id/toolbar_note_editor"
+        app:srcCompat="@drawable/ic_baseline_share_24" />
+
+    <ImageButton
+        android:id="@+id/deleteNoteButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:backgroundTint="#00FFFFFF"
+        android:onClick="deleteNote"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar_note_editor"
+        app:layout_constraintEnd_toStartOf="@+id/shareNoteButton"
+        app:layout_constraintTop_toTopOf="@+id/toolbar_note_editor"
+        app:srcCompat="@drawable/ic_baseline_delete_24" />
+</androidx.constraintlayout.widget.ConstraintLayout>
