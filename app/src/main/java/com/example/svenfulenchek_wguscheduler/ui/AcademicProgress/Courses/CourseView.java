@@ -123,10 +123,10 @@ public class CourseView extends AppCompatActivity {
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.US);
         AlarmManager alarmManager=(AlarmManager)getSystemService(Context.ALARM_SERVICE);
 
-        //long startDateMillis = sdf.parse(COURSE_START).getTime();
-        long startDateMillis = Calendar.getInstance().getTimeInMillis();
-        //long endDateMillis = sdf.parse(COURSE_START).getTime();
-        long endDateMillis = Calendar.getInstance().getTimeInMillis();
+        long startDateMillis = sdf.parse(COURSE_START).getTime();
+        //long startDateMillis = Calendar.getInstance().getTimeInMillis();
+        long endDateMillis = sdf.parse(COURSE_START).getTime();
+        //long endDateMillis = Calendar.getInstance().getTimeInMillis();
 
         // Create intents to send data to the broadcast receiver
         Intent startNotificationIntent = new Intent(CourseView.this, appBroadcastReceiver.class);

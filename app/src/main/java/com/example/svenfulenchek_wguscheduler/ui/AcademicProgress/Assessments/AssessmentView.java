@@ -119,10 +119,10 @@ public class AssessmentView extends AppCompatActivity {
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.US);
         AlarmManager alarmManager=(AlarmManager)getSystemService(Context.ALARM_SERVICE);
 
-        //long startDateMillis = sdf.parse(ASSESSMENT_START).getTime();
-        long startDateMillis = Calendar.getInstance().getTimeInMillis();
-        //long endDateMillis = sdf.parse(ASSESSMENT_END).getTime();
-        long endDateMillis = Calendar.getInstance().getTimeInMillis();
+        long startDateMillis = sdf.parse(ASSESSMENT_START).getTime();
+        //long startDateMillis = Calendar.getInstance().getTimeInMillis();
+        long endDateMillis = sdf.parse(ASSESSMENT_END).getTime();
+        //long endDateMillis = Calendar.getInstance().getTimeInMillis();
 
         // Create intents to send data to the broadcast receiver
         Intent startNotificationIntent = new Intent(AssessmentView.this, appBroadcastReceiver.class);
