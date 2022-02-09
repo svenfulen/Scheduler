@@ -36,10 +36,10 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvAssessments"
-        android:layout_width="491dp"
-        android:layout_height="352dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="492dp"
+        android:layout_height="207dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/notesButton"
         app:layout_constraintTop_toBottomOf="@+id/toolbar_course_view" />
 
     <Button
