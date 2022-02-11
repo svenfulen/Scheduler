@@ -124,18 +124,21 @@ public class AssessmentView extends AppCompatActivity {
         long endDateMillis = sdf.parse(ASSESSMENT_END).getTime();
         //long endDateMillis = Calendar.getInstance().getTimeInMillis();
 
+        String startAlertText = ASSESSMENT_TITLE + " - " + ASSESSMENT_START;
+        String endAlertText = ASSESSMENT_TITLE + " - " + ASSESSMENT_END;
+
         // Create intents to send data to the broadcast receiver
         Intent startNotificationIntent = new Intent(AssessmentView.this, appBroadcastReceiver.class);
-        startNotificationIntent.putExtra("text", ASSESSMENT_TITLE);
+        startNotificationIntent.putExtra("text", startAlertText);
         startNotificationIntent.putExtra("title", "Assessment Start");
 
         Intent endNotificationIntent = new Intent(AssessmentView.this, appBroadcastReceiver.class);
-        endNotificationIntent.putExtra("text", ASSESSMENT_TITLE);
+        endNotificationIntent.putExtra("text", endAlertText);
         endNotificationIntent.putExtra("title", "Assessment End");
 
         // Create a pending intent that will send the broadcast later
-        PendingIntent startBroadcast = PendingIntent.getBroadcast(AssessmentView.this, (1240000 + ASSESSMENT_ID), startNotificationIntent, PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
-        PendingIntent endBroadcast = PendingIntent.getBroadcast(AssessmentView.this, (1250000 + ASSESSMENT_ID), endNotificationIntent, PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent startBroadcast = PendingIntent.getBroadcast(AssessmentView.this, (1240000 + ASSESSMENT_ID), startNotificationIntent, PendingIntent.FLAG_MUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent endBroadcast = PendingIntent.getBroadcast(AssessmentView.this, (1250000 + ASSESSMENT_ID), endNotificationIntent, PendingIntent.FLAG_MUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
 
         // Tell the alarm manager to send the broadcast on the course start/end dates
         alarmManager.set(AlarmManager.RTC_WAKEUP, startDateMillis, startBroadcast);

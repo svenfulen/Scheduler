@@ -125,21 +125,24 @@ public class CourseView extends AppCompatActivity {
 
         long startDateMillis = sdf.parse(COURSE_START).getTime();
         //long startDateMillis = Calendar.getInstance().getTimeInMillis();
-        long endDateMillis = sdf.parse(COURSE_START).getTime();
+        long endDateMillis = sdf.parse(COURSE_END).getTime();
         //long endDateMillis = Calendar.getInstance().getTimeInMillis();
+
+        String startAlertText = COURSE_TITLE + " - " + COURSE_START;
+        String endAlertText = COURSE_TITLE + " - " + COURSE_END;
 
         // Create intents to send data to the broadcast receiver
         Intent startNotificationIntent = new Intent(CourseView.this, appBroadcastReceiver.class);
-        startNotificationIntent.putExtra("text", COURSE_TITLE);
+        startNotificationIntent.putExtra("text", startAlertText);
         startNotificationIntent.putExtra("title", "Course Start");
 
         Intent endNotificationIntent = new Intent(CourseView.this, appBroadcastReceiver.class);
-        endNotificationIntent.putExtra("text", COURSE_TITLE);
+        endNotificationIntent.putExtra("text", endAlertText);
         endNotificationIntent.putExtra("title", "Course End");
 
         // Create a pending intent that will send the broadcast later
-        PendingIntent startBroadcast = PendingIntent.getBroadcast(CourseView.this, (1140000 + COURSE_ID), startNotificationIntent, PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
-        PendingIntent endBroadcast = PendingIntent.getBroadcast(CourseView.this, (1150000 + COURSE_ID), endNotificationIntent, PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent startBroadcast = PendingIntent.getBroadcast(CourseView.this, (1140000 + COURSE_ID), startNotificationIntent, PendingIntent.FLAG_MUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent endBroadcast = PendingIntent.getBroadcast(CourseView.this, (1150000 + COURSE_ID), endNotificationIntent, PendingIntent.FLAG_MUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
 
         // Tell the alarm manager to send the broadcast on the course start/end dates
         alarmManager.set(AlarmManager.RTC_WAKEUP, startDateMillis, startBroadcast);
